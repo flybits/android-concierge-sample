@@ -14,3 +14,4 @@ The purpose of this application is to demonstrate how the Flybits Concierge SDK 
 * Embedded `ConciergeFragment` display
 * Full screen `ConciergeActivity` display
 * Push notifications integration
+* Navigation component integration
