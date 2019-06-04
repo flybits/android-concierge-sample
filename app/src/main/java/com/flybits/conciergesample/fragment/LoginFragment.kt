@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import com.flybits.conciergesample.R
 import com.flybits.commons.library.api.idps.AnonymousIDP
+import com.flybits.commons.library.api.idps.FlybitsIDP
 import com.flybits.commons.library.exceptions.FlybitsException
 import com.flybits.concierge.AuthenticationStatusListener
 import com.flybits.concierge.FlybitsConcierge
@@ -38,7 +39,10 @@ class LoginFragment: Fragment(), AuthenticationStatusListener {
         concierge?.registerAuthenticationStateListener(this)
 
         button_login.setOnClickListener {
-            Log.d("LoginFragment", "Login pressed")
+            progressBar?.visibility = View.VISIBLE
+            concierge?.authenticate(FlybitsIDP(field_email.text.toString(), field_password.text.toString()))
+        }
+        button_login_anonymous.setOnClickListener {
             progressBar?.visibility = View.VISIBLE
             concierge?.authenticate(AnonymousIDP())
         }
