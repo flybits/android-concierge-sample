@@ -5,7 +5,9 @@
 
     <fragment android:id="@+id/loginFragment" android:name="com.flybits.conciergesample.fragment.LoginFragment"
               android:label="Login">
+
         <action android:id="@+id/action_loginFragment_to_accountFragment" app:destination="@id/tabHolderFragment"
+                app:launchSingleTop="true"
                 app:popUpTo="@+id/nav_graph"
                 app:popUpToInclusive="true"/>
     </fragment>

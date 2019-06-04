@@ -1,14 +1,10 @@
 package com.flybits.conciergesample.activity
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.AttributeSet
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.flybits.android.push.models.Push
 import com.flybits.concierge.ConciergeConstants
@@ -23,7 +19,10 @@ class MainActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setupActionBarWithNavController(findNavController(R.id.nav_host_fragment))
+        val appBarConfig = AppBarConfiguration
+            .Builder(R.id.tabHolderFragment, R.id.loginFragment)
+            .build()
+        setupActionBarWithNavController(findNavController(R.id.nav_host_fragment), appBarConfig)
         flybitsConcierge = FlybitsConcierge.with(applicationContext)
         intent?.let { handleIntent(it) }
 

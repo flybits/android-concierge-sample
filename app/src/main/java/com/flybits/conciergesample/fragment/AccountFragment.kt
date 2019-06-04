@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -87,7 +88,7 @@ class AccountFragment: Fragment() {
         }
     }
 
-    fun requestPermissions(activity: Activity) {
+    private fun requestPermissions(activity: Activity) {
         if (ContextCompat.checkSelfPermission(activity, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
             if (ActivityCompat.shouldShowRequestPermissionRationale(activity, ACCESS_FINE_LOCATION)) {
@@ -98,6 +99,7 @@ class AccountFragment: Fragment() {
                     .content("Location helps us deliver content to you when it is most relevant. Enable the location permission to take advantage of this feature.")
                     .dismissListener { requestPermissions(activity) }
                     .build()
+                    .show()
 
             } else {
                 ActivityCompat.requestPermissions(activity, arrayOf(ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST)
