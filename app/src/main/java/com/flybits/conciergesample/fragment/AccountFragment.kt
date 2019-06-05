@@ -97,7 +97,9 @@ class AccountFragment: Fragment() {
                     .title("Location Permission")
                     .positiveText("Ok")
                     .content("Location helps us deliver content to you when it is most relevant. Enable the location permission to take advantage of this feature.")
-                    .dismissListener { requestPermissions(activity) }
+                    .dismissListener {
+                        ActivityCompat.requestPermissions(activity, arrayOf(ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST)
+                    }
                     .build()
                     .show()
 
