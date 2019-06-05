@@ -14,15 +14,15 @@ class GlobalApplication: Application() {
     override fun onCreate() {
         super.onCreate()
         val concierge = FlybitsConcierge.with(this)
+
         //This needs to happen prior to using API, doesn't need to be in Application.onCreate()
         concierge.initialize(R.xml.concierge)
+        concierge.enableDebugMode()
 
         //Add view providers for content templates you want displayed
         concierge.registerFlybitsViewProvider(OptInViewProvider(this))
         concierge.registerFlybitsViewProvider(OffersViewProvider(this))
         concierge.registerFlybitsViewProvider(BenefitsViewProvider(this))
         concierge.registerFlybitsViewProvider(ConfirmationViewProvider(this))
-        concierge.enableDebugMode()
-
     }
 }
