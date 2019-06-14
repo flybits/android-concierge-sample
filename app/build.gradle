@@ -37,7 +37,7 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     implementation 'com.google.android.material:material:1.1.0-alpha07'
-    implementation 'com.flybits.v3:concierge:2.0.0-alpha7'
+    implementation 'com.flybits.v3:concierge:2.0.0'
     implementation 'com.flybits.concierge:smart-rewards:2.0.0-alpha1'
     implementation 'com.google.firebase:firebase-core:16.0.9'
     testImplementation 'junit:junit:4.12'
