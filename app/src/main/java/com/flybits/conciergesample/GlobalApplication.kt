@@ -2,6 +2,9 @@ package com.flybits.conciergesample
 
 import android.annotation.SuppressLint
 import android.app.Application
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.os.Build
 import com.flybits.concierge.FlybitsConcierge
 
 class GlobalApplication : Application() {
@@ -10,16 +13,8 @@ class GlobalApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        /*  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-              // Create the NotificationChannel
-              val importance = NotificationManager.IMPORTANCE_DEFAULT
-              val mChannel = NotificationChannel("abhi", "Smart Rewards", importance)
-              mChannel.description = "Notifications for smart rewards"
-              // Register the channel with the system; you can't change the importance
-              // or other notification behaviors after this
-              val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-              notificationManager.createNotificationChannel(mChannel)
-          }*/
+
+        createNotificationChannel()
 
         val concierge = FlybitsConcierge.with(this)
 
@@ -32,5 +27,15 @@ class GlobalApplication : Application() {
         concierge.registerFlybitsViewProvider(OffersViewProvider(this))
         concierge.registerFlybitsViewProvider(BenefitsViewProvider(this))
         concierge.registerFlybitsViewProvider(ConfirmationViewProvider(this))*/
+    }
+
+    private fun createNotificationChannel(channelId: String = CHANNEL_ID, channelName: String="CHANNEL_NAME", channelDesc: String="CHANNEL_DESC") {
+        lateinit var channel: NotificationChannel
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            channel = NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH)
+            channel.description = channelDesc
+            val notificationManager = getSystemService(NotificationManager::class.java)
+            notificationManager.createNotificationChannel(channel)
+        }
     }
 }
