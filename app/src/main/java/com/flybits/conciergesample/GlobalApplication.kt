@@ -5,6 +5,7 @@ import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.os.Build
+import com.flybits.concierge.ConciergeConfiguration
 import com.flybits.concierge.FlybitsConcierge
 import com.flybits.concierge.smartrewards.viewproviders.BenefitsViewProvider
 import com.flybits.concierge.smartrewards.viewproviders.ConfirmationViewProvider
@@ -31,7 +32,13 @@ class GlobalApplication: Application() {
         val concierge = FlybitsConcierge.with(this)
 
         //This needs to happen prior to using API, doesn't need to be in Application.onCreate()
-        concierge.initialize(R.xml.concierge)
+        val conciergeConfiguration = ConciergeConfiguration.Builder("PROJECT-ID-HERE")
+            .setTimeToUploadContext(5)
+            .setTermsAndServicesRequired("https://flybits.com/legal/terms-of-use")
+            .setPrivacyPolicyUrl("https://flybits.com/legal/privacy-policy")
+            .build()
+        concierge.initialize(conciergeConfiguration)
+        //OR concierge.initialize(R.xml.concierge)
         concierge.enableDebugMode()
 
         //Add view providers for content templates you want displayed
