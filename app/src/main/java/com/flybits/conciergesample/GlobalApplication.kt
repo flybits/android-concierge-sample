@@ -32,13 +32,16 @@ class GlobalApplication: Application() {
         val concierge = FlybitsConcierge.with(this)
 
         //This needs to happen prior to using API, doesn't need to be in Application.onCreate()
+
+/*      UNCOMMENT TO CONFIGURE CONCIERGE PROGRAMATICALLY
         val conciergeConfiguration = ConciergeConfiguration.Builder("PROJECT-ID-HERE")
             .setTimeToUploadContext(5)
             .setTermsAndServicesRequired("https://flybits.com/legal/terms-of-use")
             .setPrivacyPolicyUrl("https://flybits.com/legal/privacy-policy")
             .build()
         concierge.initialize(conciergeConfiguration)
-        //OR concierge.initialize(R.xml.concierge)
+*/
+        concierge.initialize(R.xml.concierge)
         concierge.enableDebugMode()
 
         //Add view providers for content templates you want displayed
