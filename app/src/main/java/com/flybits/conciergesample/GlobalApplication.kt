@@ -5,6 +5,7 @@ import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.os.Build
+import com.flybits.concierge.ConciergeConfiguration
 import com.flybits.concierge.FlybitsConcierge
 
 class GlobalApplication : Application() {
@@ -19,6 +20,15 @@ class GlobalApplication : Application() {
         val concierge = FlybitsConcierge.with(this)
 
         //This needs to happen prior to using API, doesn't need to be in Application.onCreate()
+
+/*      UNCOMMENT TO CONFIGURE CONCIERGE PROGRAMATICALLY
+        val conciergeConfiguration = ConciergeConfiguration.Builder("PROJECT-ID-HERE")
+            .setTimeToUploadContext(5)
+            .setTermsAndServicesRequired("https://flybits.com/legal/terms-of-use")
+            .setPrivacyPolicyUrl("https://flybits.com/legal/privacy-policy")
+            .build()
+        concierge.initialize(conciergeConfiguration)
+*/
         concierge.initialize(R.xml.concierge)
         concierge.enableDebugMode()
 
