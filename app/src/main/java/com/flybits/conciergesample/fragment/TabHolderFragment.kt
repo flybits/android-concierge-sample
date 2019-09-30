@@ -7,14 +7,12 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.flybits.concierge.ConciergeFragment
 import com.flybits.concierge.DisplayConfiguration
 import com.flybits.concierge.enums.ShowMode
 import com.flybits.conciergesample.R
-import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.fragment_tab_holder.*
 
 class TabHolderFragment: Fragment() {
