@@ -5,7 +5,6 @@ import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.os.Build
-import com.flybits.concierge.ConciergeConfiguration
 import com.flybits.concierge.FlybitsConcierge
 
 class GlobalApplication : Application() {

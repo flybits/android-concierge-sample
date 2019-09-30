@@ -1,6 +1,5 @@
 package com.flybits.conciergesample.fragment
 
-import android.Manifest
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.app.Activity
 import android.content.pm.PackageManager
@@ -9,7 +8,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -17,6 +15,8 @@ import androidx.navigation.fragment.findNavController
 import com.afollestad.materialdialogs.MaterialDialog
 import com.flybits.commons.library.api.results.callbacks.BasicResultCallback
 import com.flybits.commons.library.exceptions.FlybitsException
+import com.flybits.concierge.ConciergeFragment
+import com.flybits.concierge.DisplayConfiguration
 import com.flybits.conciergesample.R
 import com.flybits.concierge.FlybitsConcierge
 import com.flybits.concierge.enums.ShowMode
@@ -52,7 +52,13 @@ class AccountFragment: Fragment() {
         activity?.let { requestPermissions(it) }
 
         text_picked_for_you.setOnClickListener {
-            concierge?.show(ShowMode.NEW_ACTIVITY)
+            concierge?.show(
+                DisplayConfiguration(
+                    ConciergeFragment.MenuType.MENU_TYPE_APP_BAR,
+                    ShowMode.NEW_ACTIVITY,
+                    true
+                )
+            )
         }
 
         text_logout.setOnClickListener {
