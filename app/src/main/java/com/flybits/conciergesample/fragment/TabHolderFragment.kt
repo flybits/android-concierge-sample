@@ -11,6 +11,8 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.flybits.concierge.ConciergeFragment
+import com.flybits.concierge.DisplayConfiguration
+import com.flybits.concierge.enums.ShowMode
 import com.flybits.conciergesample.R
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.fragment_tab_holder.*
@@ -21,7 +23,14 @@ class TabHolderFragment: Fragment() {
         override fun getItem(position: Int): Fragment {
             return when (position) {
                 0 -> AccountFragment.newInstance()
-                1 -> ConciergeFragment.newInstance(ConciergeFragment.MenuType.MENU_TYPE_APP_BAR)
+                1 -> ConciergeFragment.newInstance(
+                    DisplayConfiguration(
+                        ConciergeFragment.MenuType.MENU_TYPE_APP_BAR,
+                        ShowMode.OVERLAY,
+                        true
+                    )
+
+                )
                 else -> throw IllegalStateException("Tab position $position does not exist")
             }
         }
