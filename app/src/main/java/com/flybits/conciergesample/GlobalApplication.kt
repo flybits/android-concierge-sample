@@ -5,7 +5,12 @@ import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.os.Build
+import com.facebook.stetho.Stetho
 import com.flybits.concierge.FlybitsConcierge
+import com.flybits.concierge.smartrewards.viewproviders.BenefitsViewProvider
+import com.flybits.concierge.smartrewards.viewproviders.ConfirmationViewProvider
+import com.flybits.concierge.smartrewards.viewproviders.OffersViewProvider
+import com.flybits.concierge.smartrewards.viewproviders.OptInViewProvider
 
 class GlobalApplication : Application() {
 
@@ -13,6 +18,7 @@ class GlobalApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
+        Stetho.initializeWithDefaults(this)
 
         createNotificationChannel()
 
@@ -32,10 +38,10 @@ class GlobalApplication : Application() {
         concierge.enableDebugMode()
 
         //Add view providers for content templates you want displayed
-        /*concierge.registerFlybitsViewProvider(OptInViewProvider(this))
+        concierge.registerFlybitsViewProvider(OptInViewProvider(this))
         concierge.registerFlybitsViewProvider(OffersViewProvider(this))
         concierge.registerFlybitsViewProvider(BenefitsViewProvider(this))
-        concierge.registerFlybitsViewProvider(ConfirmationViewProvider(this))*/
+        concierge.registerFlybitsViewProvider(ConfirmationViewProvider(this))
     }
 
     private fun createNotificationChannel(channelId: String = CHANNEL_ID, channelName: String="CHANNEL_NAME", channelDesc: String="CHANNEL_DESC") {
