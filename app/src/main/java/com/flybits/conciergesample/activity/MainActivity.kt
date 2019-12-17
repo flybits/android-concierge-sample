@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.flybits.android.push.models.Push
+import com.flybits.android.push.models.newPush.DisplayablePush
 import com.flybits.concierge.ConciergeConstants
 import com.flybits.concierge.ConciergeFragment
 import com.flybits.concierge.DisplayConfiguration
@@ -37,7 +37,7 @@ class MainActivity: AppCompatActivity() {
 
     private fun handleIntent(intent: Intent) {
         if (intent.hasExtra(ConciergeConstants.PUSH_EXTRA)){
-            val extra = intent.getParcelableExtra<Push>(ConciergeConstants.PUSH_EXTRA)
+            val extra:DisplayablePush = intent.getParcelableExtra<DisplayablePush>(ConciergeConstants.PUSH_EXTRA)
             flybitsConcierge?.showPush(
                 DisplayConfiguration(
                     ConciergeFragment.MenuType.MENU_TYPE_APP_BAR,

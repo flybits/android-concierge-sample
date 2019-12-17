@@ -6,6 +6,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.os.Build
 import com.facebook.stetho.Stetho
+import com.flybits.commons.library.logging.VerbosityLevel
 import com.flybits.concierge.FlybitsConcierge
 import com.flybits.concierge.smartrewards.viewproviders.BenefitsViewProvider
 import com.flybits.concierge.smartrewards.viewproviders.ConfirmationViewProvider
@@ -35,7 +36,7 @@ class GlobalApplication : Application() {
         concierge.initialize(conciergeConfiguration)
 */
         concierge.initialize(R.xml.concierge)
-        concierge.enableDebugMode()
+        concierge.setLoggingVerbosity(VerbosityLevel.ALL)
 
         //Add view providers for content templates you want displayed
         concierge.registerFlybitsViewProvider(OptInViewProvider(this))
