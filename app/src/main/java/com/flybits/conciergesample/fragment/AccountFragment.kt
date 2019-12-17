@@ -13,12 +13,12 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.afollestad.materialdialogs.MaterialDialog
+import com.flybits.commons.library.api.idps.AnonymousIDP
+import com.flybits.commons.library.api.idps.FlybitsIDP
 import com.flybits.commons.library.api.results.callbacks.BasicResultCallback
 import com.flybits.commons.library.exceptions.FlybitsException
-import com.flybits.concierge.ConciergeFragment
-import com.flybits.concierge.DisplayConfiguration
+import com.flybits.concierge.*
 import com.flybits.conciergesample.R
-import com.flybits.concierge.FlybitsConcierge
 import com.flybits.concierge.enums.ShowMode
 import com.flybits.context.ReservedContextPlugin
 import com.flybits.context.plugins.FlybitsContextPlugin
@@ -30,6 +30,7 @@ const val LOCATION_PERMISSION_REQUEST = 123
 
 class AccountFragment: Fragment() {
 
+    var is2Phase = false
     companion object {
         fun newInstance(): AccountFragment {
             return AccountFragment()
@@ -43,6 +44,11 @@ class AccountFragment: Fragment() {
         concierge = FlybitsConcierge.with(context)
     }
 
+    override fun onAttach(context: android.content.Context) {
+        super.onAttach(context)
+    }
+
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_account, container, false)
     }
@@ -50,6 +56,29 @@ class AccountFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.let { requestPermissions(it) }
+
+
+        is2Phase = LoginFragment.is2Phase
+
+        if(is2Phase) {
+            text_logout.setText("Go Back")
+            insights.visibility = View.GONE
+            insights2.visibility = View.VISIBLE
+            text_picked_for_you.visibility = View.GONE
+            text_picked_for_you2.visibility = View.VISIBLE
+            text_picked_for_you3.visibility = View.VISIBLE
+        } else {
+            text_logout.text = "Logout"
+            insights.visibility = View.VISIBLE
+            insights2.visibility = View.GONE
+            text_picked_for_you.visibility = View.VISIBLE
+            text_picked_for_you2.visibility = View.GONE
+            text_picked_for_you3.visibility = View.GONE
+        }
+
+        if(is2Phase && concierge?.isAuthenticated!!) {
+            text_logout.text = "Logout"
+        }
 
         text_picked_for_you.setOnClickListener {
             concierge?.show(
@@ -61,9 +90,54 @@ class AccountFragment: Fragment() {
             )
         }
 
+        val optIn = object : OptIn2PhaseCallback {
+            override fun onOptIn2PhaseCallback(
+                optInStatus: Boolean,
+                conciergeConnectCallback: ConciergeConnectCallBack
+            ) {
+                if(LoginFragment.username.isNotEmpty()) {
+                    conciergeConnectCallback.connect(
+                        FlybitsIDP(
+                            LoginFragment.username,
+                            LoginFragment.password
+                        ), null
+                    )
+                }
+                else {
+                    conciergeConnectCallback.connect(
+                       AnonymousIDP(), null
+                    )
+                }
+            }
+        }
+        val optInError = object : OptIn2PhaseCallback {
+            override fun onOptIn2PhaseCallback(
+                optInStatus: Boolean,
+                conciergeConnectCallback: ConciergeConnectCallBack
+            ) {
+                conciergeConnectCallback.connect(null,"")
+            }
+        }
+        text_picked_for_you2.setOnClickListener{
+            concierge?.conciergeFragment("c123", DisplayConfiguration(
+                ConciergeFragment.MenuType.MENU_TYPE_APP_BAR,
+                ShowMode.NEW_ACTIVITY,
+                true
+            ),optIn,null)
+        }
+
+        text_picked_for_you3.setOnClickListener {
+            concierge?.conciergeFragment("c123", DisplayConfiguration(
+                ConciergeFragment.MenuType.MENU_TYPE_APP_BAR,
+                ShowMode.NEW_ACTIVITY,
+                true
+            ),optInError,null)
+        }
+
         text_logout.setOnClickListener {
-            progressBar.visibility = View.VISIBLE
-            concierge?.logOut(object: BasicResultCallback{
+            if (!LoginFragment.is2Phase){
+                progressBar.visibility = View.VISIBLE
+            concierge?.logOut(object : BasicResultCallback {
                 override fun onException(exception: FlybitsException) {
                     context?.let { _ ->
                         progressBar.visibility = View.GONE
@@ -73,12 +147,36 @@ class AccountFragment: Fragment() {
 
                 override fun onSuccess() {
                     context?.let { _ ->
+                        LoginFragment.username = ""
+                        LoginFragment.password= ""
                         progressBar.visibility = View.GONE
                         Snackbar.make(it, "Logged out!", Snackbar.LENGTH_SHORT).show()
                         findNavController().navigate(R.id.loginFragment)
                     }
                 }
             })
+        } else {
+                if(is2Phase && concierge?.isAuthenticated!!) {
+                    concierge?.logOut(object : BasicResultCallback {
+                        override fun onException(exception: FlybitsException) {
+                            context?.let { _ ->
+                                progressBar.visibility = View.GONE
+                                Snackbar.make(it, "Error logging out!", Snackbar.LENGTH_LONG).show()
+                            }
+                        }
+
+                        override fun onSuccess() {
+                            context?.let { _ ->
+                                progressBar.visibility = View.GONE
+                                Snackbar.make(it, "Logged out!", Snackbar.LENGTH_SHORT).show()
+                                findNavController().navigate(R.id.loginFragment)
+                            }
+                        }
+                    })
+                }else {
+                    findNavController().navigate(R.id.loginFragment)
+                }
+            }
         }
     }
 

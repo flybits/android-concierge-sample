@@ -5,21 +5,26 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import com.flybits.conciergesample.R
 import com.flybits.commons.library.api.idps.AnonymousIDP
 import com.flybits.commons.library.api.idps.FlybitsIDP
 import com.flybits.commons.library.exceptions.FlybitsException
-import com.flybits.concierge.AuthenticationStatusListener
-import com.flybits.concierge.FlybitsConcierge
+import com.flybits.concierge.*
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_login.*
 
 class LoginFragment: Fragment(), AuthenticationStatusListener {
 
     private var concierge: FlybitsConcierge? = null
+
+    companion object{
+        var is2Phase= false
+        var username = ""
+        var password = ""
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("LoginFragment", "Created login fragment")
@@ -40,11 +45,36 @@ class LoginFragment: Fragment(), AuthenticationStatusListener {
 
         button_login.setOnClickListener {
             progressBar?.visibility = View.VISIBLE
+            is2Phase = false
             concierge?.authenticate(FlybitsIDP(field_email.text.toString(), field_password.text.toString()))
         }
         button_login_anonymous.setOnClickListener {
             progressBar?.visibility = View.VISIBLE
+            is2Phase = false
             concierge?.authenticate(AnonymousIDP())
+        }
+
+
+        button_two_phase.setOnClickListener {
+            username = field_email.text.toString()
+            password = field_password.text.toString()
+
+            if(username.isNotEmpty() && password.isNotEmpty()) {
+                progressBar?.visibility = View.GONE
+                is2Phase = true
+                findNavController().navigate(R.id.action_loginFragment_to_accountFragment)
+            }
+            else {
+                Toast.makeText(context,"Please enter username and password to connect",Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        button_two_phase2.setOnClickListener {
+            username=""
+            password=""
+            progressBar?.visibility = View.GONE
+            is2Phase = true
+            findNavController().navigate(R.id.action_loginFragment_to_accountFragment)
         }
     }
 
