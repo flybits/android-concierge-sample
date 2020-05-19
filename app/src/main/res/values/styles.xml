@@ -3,5 +3,8 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.Bridge">
     </style>
-
+    <style name="Concierge.StreamLined.ConstraintLayout" parent="Concierge.ConstraintLayout">
+        <item name="android:layout_marginBottom">@dimen/flybits_streamlined_margin_bottom</item>
+        <item name="android:background">@color/flybits_mdgrey</item>
+    </style>
 </resources>
