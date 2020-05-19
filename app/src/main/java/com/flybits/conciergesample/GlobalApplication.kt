@@ -7,6 +7,7 @@ import android.app.NotificationManager
 import android.os.Build
 import com.facebook.stetho.Stetho
 import com.flybits.commons.library.logging.VerbosityLevel
+import com.flybits.concierge.ConciergeConfiguration
 import com.flybits.concierge.FlybitsConcierge
 import com.flybits.concierge.smartrewards.viewproviders.BenefitsViewProvider
 import com.flybits.concierge.smartrewards.viewproviders.ConfirmationViewProvider
@@ -27,16 +28,16 @@ class GlobalApplication : Application() {
 
         //This needs to happen prior to using API, doesn't need to be in Application.onCreate()
 
-/*      UNCOMMENT TO CONFIGURE CONCIERGE PROGRAMATICALLY
-        val conciergeConfiguration = ConciergeConfiguration.Builder("PROJECT-ID-HERE")
+//     UNCOMMENT TO CONFIGURE CONCIERGE PROGRAMATICALLY
+        val conciergeConfiguration = ConciergeConfiguration.Builder("C0C7D7D7-9716-4223-B4DB-1C9CC560E3C3")
             .setTimeToUploadContext(5)
             .setTermsAndServicesRequired("https://flybits.com/legal/terms-of-use")
             .setPrivacyPolicyUrl("https://flybits.com/legal/privacy-policy")
             .build()
         concierge.initialize(conciergeConfiguration)
-*/
-        concierge.initialize(R.xml.concierge)
-        concierge.setLoggingVerbosity(VerbosityLevel.ALL)
+
+//        concierge.initialize(R.xml.concierge)
+//        concierge.setLoggingVerbosity(VerbosityLevel.ALL)
 
         //Add view providers for content templates you want displayed
         concierge.registerFlybitsViewProvider(OptInViewProvider(this))
