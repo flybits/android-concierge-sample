@@ -69,6 +69,7 @@ class LoginFragment : Fragment(), AuthenticationStatusListener {
                 ).show()
             }
         }
+
         button_login_anonymous.setOnClickListener {
             progressBar?.visibility = View.VISIBLE
             is2Phase = false
