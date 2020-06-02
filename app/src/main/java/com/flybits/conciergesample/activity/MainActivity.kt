@@ -38,11 +38,11 @@ class MainActivity : AppCompatActivity() {
     private fun handleIntent(intent: Intent) {
         if (intent.hasExtra(EXTRA_PUSH_NOTIFICATION)) {
             val extra: DisplayablePush =
-                intent.getParcelableExtra<DisplayablePush>(EXTRA_PUSH_NOTIFICATION)
+                intent.getParcelableExtra(EXTRA_PUSH_NOTIFICATION)
             flybitsConcierge?.showPush(
                 DisplayConfiguration(
                     ConciergeFragment.MenuType.MENU_TYPE_APP_BAR,
-                    ShowMode.NEW_ACTIVITY,
+                    ShowMode.EXTERNAL,
                     true
                 ),
                 extra
