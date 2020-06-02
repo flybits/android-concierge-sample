@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.flybits.commons.library.api.idps.AnonymousIDP
-import com.flybits.commons.library.api.idps.JwtIDP
+import com.flybits.commons.library.api.idps.FlybitsIDP
 import com.flybits.commons.library.exceptions.FlybitsException
 import com.flybits.concierge.AuthenticationStatusListener
 import com.flybits.concierge.FlybitsConcierge
@@ -49,9 +49,25 @@ class LoginFragment : Fragment(), AuthenticationStatusListener {
         concierge?.registerAuthenticationStateListener(this)
 
         button_login.setOnClickListener {
-            progressBar?.visibility = View.VISIBLE
-            is2Phase = false
-            concierge?.authenticate(JwtIDP("eyJhbGciOiJIUzI1NiIsImtpZCI6IjAyN0VGQkU3LTAxMjMtNDgyMC04OTQ3LUI4NjM3Q0FCQTgzNSIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTYwMDA0OTUsIm5iZiI6MTU5MDgxNjQ5NSwidXNlcklEIjoiODBCQ0M3OUQtRjNGRi00MDlFLTlEMEQtRTkwN0Y1MEI1QTM4IiwiZGV2aWNlSUQiOiJDRjE4MjNGNC05REQxLTQzNkEtQkUxNy00MjdGQjY4NDlEQkQiLCJ0ZW5hbnRJRCI6IjAyN0VGQkU3LTAxMjMtNDgyMC04OTQ3LUI4NjM3Q0FCQTgzNSIsImlzU0EiOmZhbHNlfQ.tatXFCA6Iy4uXvkr7pqIBF_lIwGOyRhYWHzRjMzOXO4"))
+            username = field_email.text.toString()
+            password = field_password.text.toString()
+
+            if (username.isNotEmpty() && password.isNotEmpty()) {
+                progressBar?.visibility = View.VISIBLE
+                is2Phase = false
+                concierge?.authenticate(
+                    FlybitsIDP(
+                        username,
+                        password
+                    )
+                )
+            } else {
+                Toast.makeText(
+                    context,
+                    "Please enter username and password to connect",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
         button_login_anonymous.setOnClickListener {
             progressBar?.visibility = View.VISIBLE
