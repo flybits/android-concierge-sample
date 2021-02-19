@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun handleIntent(intent: Intent) {
         if (intent.hasExtra(EXTRA_PUSH_NOTIFICATION)) {
-            val extra: DisplayablePush =
+            val extra: DisplayablePush? =
                 intent.getParcelableExtra(EXTRA_PUSH_NOTIFICATION)
             flybitsConcierge?.showPush(
                 DisplayConfiguration(
