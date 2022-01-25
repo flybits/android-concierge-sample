@@ -1,5 +1,6 @@
 package com.flybits.conciergesample.fragment
 
+import android.app.Application
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import com.flybits.commons.library.api.results.callbacks.BasicResultCallback
 import com.flybits.commons.library.exceptions.FlybitsException
 import com.flybits.concierge.*
 import com.flybits.concierge.enums.ShowMode
+import com.flybits.conciergesample.GlobalApplication
 import com.flybits.conciergesample.R
 import kotlinx.android.synthetic.main.fragment_tab_holder.*
 
@@ -99,7 +101,11 @@ class TabHolderFragment : Fragment() {
                     conciergeConnectCallback.connect(
                         AnonymousIDP(),
                         null
-                    ) // with valid idp try different IDPS
+                    )
+
+                    (activity?.application as GlobalApplication).startPlugins()
+
+                    // with valid idp try different IDPS
                     //conciergeConnectCallback.connect(null, "")  // with idp null and error string empty
                     //conciergeConnectCallback.connect(null, "Error String")  // with idp null and valid error string
                     // conciergeConnectCallback.connect(null, null)  // with idp null and error string null
