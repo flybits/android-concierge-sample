@@ -1,45 +1,84 @@
 package com.flybits.conciergesample.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.ViewPager
-import com.flybits.commons.library.api.idps.AnonymousIDP
-import com.flybits.commons.library.api.results.callbacks.BasicResultCallback
-import com.flybits.commons.library.exceptions.FlybitsException
-import com.flybits.concierge.*
-import com.flybits.concierge.enums.ShowMode
+import com.flybits.android.push.models.newPush.Push
+import com.flybits.concierge.Concierge
+import com.flybits.concierge.ConciergeConnectCallBack
+import com.flybits.concierge.ConciergeConstants
+import com.flybits.concierge.OptIn2PhaseCallback
+import com.flybits.concierge.enums.ConciergeOptions
+import com.flybits.concierge.enums.Container
 import com.flybits.conciergesample.R
+import com.flybits.flybitscoreconcierge.idps.AnonymousConciergeIDP
 import kotlinx.android.synthetic.main.fragment_tab_holder.*
 
 class TabHolderFragment : Fragment() {
-    lateinit var concierge: FlybitsConcierge
-    lateinit var displayConfiguration: DisplayConfiguration
 
-    class TabViewPagerAdapter(fragmentManager: FragmentManager) :
+    var isHorizontal: Boolean = false
+    var displayNotificationAPI: Boolean = false
+    var containerType: Container = Container.None
+    var settings: Boolean = false
+    var notification: Boolean = false
+    var displaynavigation: Boolean = false
+    var pushExtra: Push? = null
+
+    class TabViewPagerAdapter(
+        fragmentManager: FragmentManager,
+        var context: Context,
+        var isHorizontal: Boolean,
+        var displayNotificationAPI: Boolean,
+        var containerType: Container,
+        var settings: Boolean,
+        var notification: Boolean,
+        var displaynavigation: Boolean,
+        var pushExtra: Push? = null
+    ) :
         FragmentStatePagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
         override fun getItem(position: Int): Fragment {
+            val conciergeOptions = ArrayList<ConciergeOptions>()
+            if (isHorizontal) {
+                conciergeOptions.add(ConciergeOptions.Horizontal)
+            }
+            if (displayNotificationAPI) {
+                conciergeOptions.add(ConciergeOptions.ShowNotifications)
+            }
+            if (displaynavigation) {
+                conciergeOptions.add(ConciergeOptions.DisplayNavigation)
+            }
+            if (settings) {
+                conciergeOptions.add(ConciergeOptions.Settings)
+            }
+            if (notification) {
+                conciergeOptions.add(ConciergeOptions.Notifications)
+            }
+
             return when (position) {
                 0 -> AccountFragment.newInstance()
-                1 -> ConciergeFragment.newInstance(
-                    DisplayConfiguration(
-                        ConciergeFragment.MenuType.MENU_TYPE_APP_BAR,
-                        ShowMode.OVERLAY,
-                        true
-                    )
-                    // displayConfiguration
-
-                )
+                1 ->
+                    pushExtra?.let {
+                        Concierge.deepLink(it)
+                    } ?: run {
+                        Concierge.fragment(
+                            context, containerType,
+                            null,
+                            conciergeOptions
+                        )
+                    }
                 else -> throw IllegalStateException("Tab position $position does not exist")
             }
         }
 
-        override fun getPageTitle(position: Int): CharSequence? {
+        override fun getPageTitle(position: Int): CharSequence {
             return when (position) {
                 0 -> "Account"
                 1 -> "Concierge"
@@ -58,8 +97,26 @@ class TabHolderFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_tab_holder, container, false)
     }
 
+    override fun onResume() {
+        super.onResume()
+
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        arguments?.apply {
+            isHorizontal = this.getBoolean("showHorizontal")
+            displayNotificationAPI = this.getBoolean("showNotificationsApi")
+            containerType = this.getParcelable("ContainerType") ?: Container.Categories
+            settings = this.getBoolean("settings")
+            notification = this.getBoolean("notification")
+            displaynavigation = this.getBoolean("displaynavigation")
+            if (this.getParcelable<Push>(ConciergeConstants.PUSH_EXTRA) != null) {
+                pushExtra = this.getParcelable<Push>(ConciergeConstants.PUSH_EXTRA)
+            }
+        }
+
         view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
             }
@@ -79,16 +136,9 @@ class TabHolderFragment : Fragment() {
                 }
             }
         })
-        displayConfiguration =
-            DisplayConfiguration(
-                ConciergeFragment.MenuType.MENU_TYPE_APP_BAR,
-                ShowMode.NEW_ACTIVITY,
-                true
-            )
 
         if (LoginFragment.is2Phase) {
             // Return Fragment for 2Phase optin flow
-            concierge = FlybitsConcierge.with(context)
             var optin = object : OptIn2PhaseCallback {
                 override fun onOptIn2PhaseCallback(
                     optInStatus: Boolean,
@@ -97,7 +147,7 @@ class TabHolderFragment : Fragment() {
                     if (optInStatus) {
                     }
                     conciergeConnectCallback.connect(
-                        AnonymousIDP(),
+                        AnonymousConciergeIDP(),
                         null
                     ) // with valid idp try different IDPS
                     //conciergeConnectCallback.connect(null, "")  // with idp null and error string empty
@@ -105,7 +155,7 @@ class TabHolderFragment : Fragment() {
                     // conciergeConnectCallback.connect(null, null)  // with idp null and error string null
                 }
             }
-            concierge.conciergeFragment(
+            /*concierge.conciergeFragment(
                 "cust1234",
                 displayConfiguration,
                 optin,
@@ -117,10 +167,21 @@ class TabHolderFragment : Fragment() {
                         view_pager.adapter = TabViewPagerAdapter(activity!!.supportFragmentManager)
                         tabs.setupWithViewPager(view_pager)
                     }
-                })
+                })*/
 
         } else {
-            view_pager.adapter = TabViewPagerAdapter(activity!!.supportFragmentManager)
+            view_pager.adapter =
+                TabViewPagerAdapter(
+                    requireActivity().supportFragmentManager,
+                    requireContext(),
+                    isHorizontal,
+                    displayNotificationAPI,
+                    containerType,
+                    settings,
+                    notification,
+                    displaynavigation,
+                    pushExtra
+                )
             tabs.setupWithViewPager(view_pager)
         }
 

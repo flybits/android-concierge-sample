@@ -14,14 +14,13 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.afollestad.materialdialogs.MaterialDialog
 import com.flybits.commons.library.api.idps.AnonymousIDP
-import com.flybits.commons.library.api.idps.FlybitsIDP
 import com.flybits.commons.library.api.results.callbacks.BasicResultCallback
 import com.flybits.commons.library.exceptions.FlybitsException
 import com.flybits.concierge.*
 import com.flybits.conciergesample.R
-import com.flybits.concierge.enums.ShowMode
 import com.flybits.context.ReservedContextPlugin
 import com.flybits.context.plugins.FlybitsContextPlugin
+import com.flybits.flybitscoreconcierge.idps.AnonymousConciergeIDP
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_account.*
 import java.util.concurrent.TimeUnit
@@ -37,11 +36,8 @@ class AccountFragment: Fragment() {
         }
     }
 
-    private var concierge: FlybitsConcierge? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        concierge = FlybitsConcierge.with(context)
     }
 
     override fun onAttach(context: android.content.Context) {
@@ -76,18 +72,12 @@ class AccountFragment: Fragment() {
             text_picked_for_you3.visibility = View.GONE
         }
 
-        if(is2Phase && concierge?.isAuthenticated!!) {
+        if(is2Phase && Concierge.isConnected(requireContext())!!) {
             text_logout.text = "Logout"
         }
 
         text_picked_for_you.setOnClickListener {
-            concierge?.show(
-                DisplayConfiguration(
-                    ConciergeFragment.MenuType.MENU_TYPE_APP_BAR,
-                    ShowMode.NEW_ACTIVITY,
-                    true
-                )
-            )
+
         }
 
         val optIn = object : OptIn2PhaseCallback {
@@ -96,16 +86,11 @@ class AccountFragment: Fragment() {
                 conciergeConnectCallback: ConciergeConnectCallBack
             ) {
                 if(LoginFragment.username.isNotEmpty()) {
-                    conciergeConnectCallback.connect(
-                        FlybitsIDP(
-                            LoginFragment.username,
-                            LoginFragment.password
-                        ), null
-                    )
+
                 }
                 else {
                     conciergeConnectCallback.connect(
-                       AnonymousIDP(), null
+                       AnonymousConciergeIDP(), null
                     )
                 }
             }
@@ -119,45 +104,45 @@ class AccountFragment: Fragment() {
             }
         }
         text_picked_for_you2.setOnClickListener{
-            concierge?.conciergeFragment("c123", DisplayConfiguration(
+           /* concierge?.conciergeFragment("c123", DisplayConfiguration(
                 ConciergeFragment.MenuType.MENU_TYPE_APP_BAR,
                 ShowMode.NEW_ACTIVITY,
                 true
-            ),optIn,null)
+            ),optIn,null)*/
         }
 
         text_picked_for_you3.setOnClickListener {
-            concierge?.conciergeFragment("c123", DisplayConfiguration(
+           /* concierge?.conciergeFragment("c123", DisplayConfiguration(
                 ConciergeFragment.MenuType.MENU_TYPE_APP_BAR,
                 ShowMode.NEW_ACTIVITY,
                 true
-            ),optInError,null)
+            ),optInError,null)*/
         }
 
         text_logout.setOnClickListener {
             if (!LoginFragment.is2Phase){
                 progressBar.visibility = View.VISIBLE
-            concierge?.logOut(object : BasicResultCallback {
-                override fun onException(exception: FlybitsException) {
-                    context?.let { _ ->
-                        progressBar.visibility = View.GONE
-                        Snackbar.make(it, "Error logging out!", Snackbar.LENGTH_LONG).show()
+                Concierge.disconnect(requireContext(),object : BasicResultCallback {
+                    override fun onException(exception: FlybitsException) {
+                        context?.let { _ ->
+                            progressBar.visibility = View.GONE
+                            Snackbar.make(it, "Error logging out!", Snackbar.LENGTH_LONG).show()
+                        }
                     }
-                }
 
-                override fun onSuccess() {
-                    context?.let { _ ->
-                        LoginFragment.username = ""
-                        LoginFragment.password= ""
-                        progressBar.visibility = View.GONE
-                        Snackbar.make(it, "Logged out!", Snackbar.LENGTH_SHORT).show()
-                        findNavController().navigate(R.id.loginFragment)
+                    override fun onSuccess() {
+                        context?.let { _ ->
+                            LoginFragment.username = ""
+                            LoginFragment.password= ""
+                            progressBar.visibility = View.GONE
+                            Snackbar.make(it, "Logged out!", Snackbar.LENGTH_SHORT).show()
+                            findNavController().navigate(R.id.loginFragment)
+                        }
                     }
-                }
-            })
+                })
         } else {
-                if(is2Phase && concierge?.isAuthenticated!!) {
-                    concierge?.logOut(object : BasicResultCallback {
+                if(is2Phase && Concierge.isConnected(requireContext())!!) {
+                    Concierge.disconnect(requireContext(),object : BasicResultCallback {
                         override fun onException(exception: FlybitsException) {
                             context?.let { _ ->
                                 progressBar.visibility = View.GONE
@@ -188,7 +173,6 @@ class AccountFragment: Fragment() {
                 .setRefreshTime(10, 5, TimeUnit.MINUTES)
                 .build()
             Log.d("AccountFragment", "Starting context plugin")
-            FlybitsConcierge.with(context).startContextPlugin(plugin)
         }
     }
 

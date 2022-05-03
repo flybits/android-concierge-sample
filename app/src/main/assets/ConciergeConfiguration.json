@@ -1,0 +1,13 @@
+{
+  "conciergeConfiguration": {
+    "projectConfiguration": {
+      "projectId": "E80B1836-C335-4D44-ACEA-0F9C2D090926",
+      "gatewayUrl": "https://api.demo.flybits.com"
+    },
+    "settingsConfiguration": {
+      "tncUrl": "https://www.flybits.com/legal/terms-of-use",
+      "privacyUrl": "https://www.flybits.com/legal/privacy-policy",
+      "showOptOut": true
+    }
+  }
+}

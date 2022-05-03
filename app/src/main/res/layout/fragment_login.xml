@@ -1,39 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-                                                   android:layout_height="match_parent"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto">
+        android:layout_height="match_parent">
+
 
     <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_two_phase2"
+            android:id="@+id/button_WithDefault"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="24dp"
-            android:text="Using 2 Phase Optin Anonymous"
+            android:text="Open Concierge With Default Container"
             android:textColor="@color/flybits_dkgrey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_two_phase" />
+            app:layout_constraintTop_toBottomOf="@+id/button_login_anonymous" />
 
     <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_login"
+            android:id="@+id/button_WithCategories"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="24dp"
-            android:text="Login"
+            android:text="Open Concierge With Categories Container"
             android:textColor="@color/flybits_dkgrey"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/field_password" />
+            app:layout_constraintTop_toBottomOf="@+id/button_WithDefault" />
+
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_WithExpose"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="24dp"
+            android:text="Open Concierge With Expose Container (Default Horizontal)"
+            android:textColor="@color/flybits_dkgrey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_WithCategories" />
+
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_WithNavigationBar"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="24dp"
+            android:text="Open Concierge With Full Navigation Bar(None Container)"
+            android:textColor="@color/flybits_dkgrey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_WithExpose" />
+
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_WithNotificationsContent"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="24dp"
+            android:text="Open Concierge With Notification API Content"
+            android:textColor="@color/flybits_dkgrey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_WithNavigationBar" />
+
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_logout"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="24dp"
+            android:text="Log Out"
+            android:textColor="@color/flybits_dkgrey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_WithNotificationsContent" />
 
     <com.google.android.material.button.MaterialButton
             android:id="@+id/button_login_anonymous"
@@ -41,64 +102,75 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
             android:text="Anonymous Login"
             android:textColor="@color/flybits_dkgrey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_login" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_set_project_id"
+            tools:layout_editor_absoluteY="8dp" />
 
-    <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_two_phase"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+
+    <EditText
+            android:id="@+id/project_id"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
-            android:text="Using 2 Phase Optin"
-            android:textColor="@color/flybits_dkgrey"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header" />
+
+    <EditText
+            android:id="@+id/gateway_url_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_login_anonymous" />
+            app:layout_constraintTop_toBottomOf="@+id/project_id" />
 
-    <EditText
+    <Button
+            android:id="@+id/btn_set_project_id"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:ems="10"
-            android:id="@+id/field_email"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginStart="24dp" android:layout_marginEnd="24dp" android:hint="Email"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"/>
-    <EditText
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:id="@+id/field_password"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="24dp" android:layout_marginStart="24dp" android:hint="Password"
-            app:layout_constraintTop_toBottomOf="@+id/field_email" android:layout_marginTop="8dp"/>
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:text="Change Project Id and Gateway from JSON"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/gateway_url_spinner" />
+
+
     <ProgressBar
+            android:id="@+id/progressBar"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/progressBar"
             android:visibility="gone"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
-            android:text="Bank ABC"
+            android:id="@+id/header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/header" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp"
+            android:text="Bank ABC"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            app:layout_constraintHorizontal_bias="0.091" app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="16dp"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.091"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
