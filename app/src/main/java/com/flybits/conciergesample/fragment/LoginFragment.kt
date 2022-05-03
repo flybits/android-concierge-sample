@@ -44,6 +44,7 @@ class LoginFragment : Fragment(), AuthenticationStatusListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("LoginFragment", "Created login fragment")
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onCreateView(

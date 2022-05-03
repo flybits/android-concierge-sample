@@ -1,19 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/nav_graph" app:startDestination="@+id/loginFragment">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/nav_graph"
+        app:startDestination="@+id/loginFragment">
 
-    <fragment android:id="@+id/loginFragment" android:name="com.flybits.conciergesample.fragment.LoginFragment"
-              android:label="Login">
+    <fragment
+            android:id="@+id/loginFragment"
+            android:name="com.flybits.conciergesample.fragment.LoginFragment"
+            android:label="Login">
 
-        <action android:id="@+id/action_loginFragment_to_accountFragment" app:destination="@id/tabHolderFragment"
+        <action
+                android:id="@+id/action_loginFragment_to_accountFragment"
+                app:destination="@id/tabHolderFragment"
                 app:launchSingleTop="true"
                 app:popUpTo="@+id/nav_graph"
-                app:popUpToInclusive="true"/>
+                app:popUpToInclusive="true" />
     </fragment>
 
-    <fragment android:id="@+id/tabHolderFragment"
-              android:name="com.flybits.conciergesample.fragment.TabHolderFragment"
-              android:label="Account"/>
+    <fragment
+            android:id="@+id/tabHolderFragment"
+            android:name="com.flybits.conciergesample.fragment.TabHolderFragment"
+            android:label="Account">
+        <action
+                android:id="@+id/action_accountFragment_to_loginFragment"
+                app:destination="@id/loginFragment"
+                app:launchSingleTop="true"
+                app:popUpTo="@+id/nav_graph"
+                app:popUpToInclusive="true" />
+    </fragment>
 
 </navigation>

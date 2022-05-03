@@ -5,11 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager
 import com.flybits.android.push.models.newPush.Push
 import com.flybits.concierge.Concierge
@@ -24,12 +25,12 @@ import kotlinx.android.synthetic.main.fragment_tab_holder.*
 
 class TabHolderFragment : Fragment() {
 
-    var isHorizontal: Boolean = false
-    var displayNotificationAPI: Boolean = false
+    private var isHorizontal: Boolean = false
+    private var displayNotificationAPI: Boolean = false
     var containerType: Container = Container.None
-    var settings: Boolean = false
+    private var settings: Boolean = false
     var notification: Boolean = false
-    var displaynavigation: Boolean = false
+    private var displaynavigation: Boolean = false
     var pushExtra: Push? = null
 
     class TabViewPagerAdapter(
@@ -95,6 +96,19 @@ class TabHolderFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_tab_holder, container, false)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true /* enabled by default */) {
+                override fun handleOnBackPressed() {
+                    // Handle the back button event
+                    findNavController().navigate(R.id.action_accountFragment_to_loginFragment)
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
     }
 
     override fun onResume() {
