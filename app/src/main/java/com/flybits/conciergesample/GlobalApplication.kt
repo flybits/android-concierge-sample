@@ -19,6 +19,7 @@ class GlobalApplication : Application() {
         Stetho.initializeWithDefaults(this)
         createNotificationChannel()
 
+        //Call configure on Concierge
         Concierge.configure(null, arrayListOf(
             ContextManager.PluginType.ReservedPlugin(
                 ReservedContextPlugin
