@@ -1,171 +1,228 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-                                                       android:layout_height="match_parent">
+            android:layout_height="match_parent">
+
         <TextView
-                android:text="Accounts"
+                android:id="@+id/accounts"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/accounts"
+                android:layout_marginTop="8dp"
+                android:text="Accounts"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 app:layout_constraintStart_toStartOf="@+id/header"
-                app:layout_constraintTop_toBottomOf="@+id/header" android:layout_marginTop="8dp"/>
+                app:layout_constraintTop_toBottomOf="@+id/header" />
+
         <TextView
-                android:text="Chequing"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 android:id="@+id/text_chequing"
-                app:layout_constraintTop_toBottomOf="@+id/accounts" android:layout_marginTop="8dp"
-                app:layout_constraintStart_toStartOf="@+id/accounts" android:layout_marginStart="8dp"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                app:layout_constraintEnd_toEndOf="parent"/>
-        <TextView
-                android:text="$200.00"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/amount_chequing"
-                app:layout_constraintTop_toBottomOf="@+id/text_chequing"
-                app:layout_constraintStart_toStartOf="@+id/text_chequing"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Chequing"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/accounts"
+                app:layout_constraintTop_toBottomOf="@+id/accounts" />
+
+        <TextView
+                android:id="@+id/amount_chequing"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="$200.00"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/text_chequing"
+                app:layout_constraintTop_toBottomOf="@+id/text_chequing" />
+
         <View
                 android:id="@+id/divider_chequing"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
+                android:layout_marginTop="8dp"
                 android:background="?android:attr/listDivider"
-                app:layout_constraintTop_toBottomOf="@+id/amount_chequing"
-                android:layout_marginTop="8dp" app:layout_constraintStart_toStartOf="@+id/amount_chequing"/>
+                app:layout_constraintStart_toStartOf="@+id/amount_chequing"
+                app:layout_constraintTop_toBottomOf="@+id/amount_chequing" />
 
         <TextView
-                android:text="Savings"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 android:id="@+id/text_savings"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                app:layout_constraintTop_toBottomOf="@+id/divider_chequing" android:layout_marginTop="8dp"
-                app:layout_constraintStart_toStartOf="@+id/accounts" android:layout_marginStart="8dp"
-                app:layout_constraintEnd_toEndOf="parent"/>
-        <TextView
-                android:text="$12.00"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/amount_savings"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Savings"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                app:layout_constraintTop_toBottomOf="@+id/text_savings"
-                app:layout_constraintStart_toStartOf="@+id/text_savings" app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/accounts"
+                app:layout_constraintTop_toBottomOf="@+id/divider_chequing" />
+
+        <TextView
+                android:id="@+id/amount_savings"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="$12.00"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/text_savings"
+                app:layout_constraintTop_toBottomOf="@+id/text_savings" />
+
         <View
                 android:id="@+id/divider_savings"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
+                android:layout_marginTop="8dp"
                 android:background="?android:attr/listDivider"
-                app:layout_constraintTop_toBottomOf="@+id/amount_savings"
-                android:layout_marginTop="8dp" app:layout_constraintStart_toStartOf="@+id/amount_savings"/>
+                app:layout_constraintStart_toStartOf="@+id/amount_savings"
+                app:layout_constraintTop_toBottomOf="@+id/amount_savings" />
 
         <TextView
-                android:text="Credit"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 android:id="@+id/text_credit"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                app:layout_constraintTop_toBottomOf="@+id/divider_savings" android:layout_marginTop="8dp"
-                app:layout_constraintStart_toStartOf="@+id/accounts" android:layout_marginStart="8dp"
-                app:layout_constraintEnd_toEndOf="parent"/>
-        <TextView
-                android:text="$12,000.00"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/amount_credit"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Credit"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                app:layout_constraintTop_toBottomOf="@+id/text_credit"
-                app:layout_constraintStart_toStartOf="@+id/text_credit" app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/accounts"
+                app:layout_constraintTop_toBottomOf="@+id/divider_savings" />
 
         <TextView
-                android:text="Investments"
+                android:id="@+id/amount_credit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="$12,000.00"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/text_credit"
+                app:layout_constraintTop_toBottomOf="@+id/text_credit" />
+
+        <TextView
+                android:id="@+id/information"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textStyle="bold|italic"
+                android:text="Swipe to Concierge tab to show the configuration selected and Below is a example of Embedded Concierge with in the View:"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/amount_credit"
+                app:layout_constraintTop_toBottomOf="@+id/amount_credit" />
+
+        <FrameLayout
+                android:id="@+id/embeded_concierge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="3"
+                android:background="@android:color/holo_green_light"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/information" />
+
+
+        <TextView
+                android:id="@+id/investments"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/investments"
+
+                android:layout_marginTop="8dp"
+                android:text="Investments"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                app:layout_constraintTop_toBottomOf="@+id/amount_credit"
-                app:layout_constraintStart_toStartOf="@+id/accounts" android:layout_marginTop="16dp"/>
+                app:layout_constraintStart_toStartOf="@+id/accounts"
+                app:layout_constraintTop_toBottomOf="@+id/embeded_concierge" />
 
         <TextView
-                android:text="Mutual Fund A"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 android:id="@+id/text_mutual_fund_a"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                app:layout_constraintTop_toBottomOf="@+id/investments" android:layout_marginTop="8dp"
-                app:layout_constraintStart_toStartOf="@+id/investments" android:layout_marginStart="8dp"
-                app:layout_constraintEnd_toEndOf="parent"/>
-        <TextView
-                android:text="$13.59"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/amount_mutual_fund_a"
+
+                android:layout_marginTop="8dp"
+                android:text="Mutual Fund A"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                app:layout_constraintTop_toBottomOf="@+id/text_mutual_fund_a"
-                app:layout_constraintStart_toStartOf="@+id/text_mutual_fund_a" app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/investments"
+                app:layout_constraintTop_toBottomOf="@+id/investments" />
+
+        <TextView
+                android:id="@+id/amount_mutual_fund_a"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="$13.59"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/text_mutual_fund_a"
+                app:layout_constraintTop_toBottomOf="@+id/text_mutual_fund_a" />
+
         <View
                 android:id="@+id/divider_mutual_fund_a"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
+                android:layout_marginTop="8dp"
                 android:background="?android:attr/listDivider"
-                app:layout_constraintTop_toBottomOf="@+id/amount_mutual_fund_a"
-                android:layout_marginTop="8dp" app:layout_constraintStart_toStartOf="@+id/amount_mutual_fund_a"/>
+                app:layout_constraintStart_toStartOf="@+id/amount_mutual_fund_a"
+                app:layout_constraintTop_toBottomOf="@+id/amount_mutual_fund_a" />
 
         <TextView
-                android:text="401K"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 android:id="@+id/text_401k"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                app:layout_constraintTop_toBottomOf="@+id/divider_mutual_fund_a" android:layout_marginTop="8dp"
-                app:layout_constraintStart_toStartOf="@+id/investments" android:layout_marginStart="8dp"
-                app:layout_constraintEnd_toEndOf="parent"/>
-        <TextView
-                android:text="$15,581.31"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/amount_401k"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="401K"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                app:layout_constraintTop_toBottomOf="@+id/text_401k" app:layout_constraintStart_toStartOf="@+id/text_401k"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/investments"
+                app:layout_constraintTop_toBottomOf="@+id/divider_mutual_fund_a" />
 
         <TextView
-                android:text="Insights"
+                android:id="@+id/amount_401k"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="$15,581.31"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/text_401k"
+                app:layout_constraintTop_toBottomOf="@+id/text_401k" />
+
+        <TextView
+                android:id="@+id/insights"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/insights"
+                android:layout_marginTop="16dp"
+                android:text="Insights"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                app:layout_constraintTop_toBottomOf="@+id/amount_401k"
-                app:layout_constraintStart_toStartOf="@+id/accounts" android:layout_marginTop="16dp"/>
+                app:layout_constraintStart_toStartOf="@+id/accounts"
+                app:layout_constraintTop_toBottomOf="@+id/amount_401k" />
 
         <TextView
                 android:id="@+id/insights2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:text="Insights For 2 Phase"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 app:layout_constraintStart_toStartOf="@+id/accounts"
-                app:layout_constraintTop_toBottomOf="@+id/text_picked_for_you" android:layout_marginTop="16dp" />
+                app:layout_constraintTop_toBottomOf="@+id/text_picked_for_you" />
 
         <TextView
-                android:text="Picked For You"
+                android:id="@+id/text_picked_for_you"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/text_picked_for_you"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                android:paddingStart="8dp"
+                android:paddingTop="8dp"
                 android:paddingBottom="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/insights" android:paddingTop="8dp"
-                app:layout_constraintStart_toStartOf="@+id/insights" android:paddingStart="8dp"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                android:text="Picked For You"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/insights"
+                app:layout_constraintTop_toBottomOf="@+id/insights" />
 
         <TextView
                 android:id="@+id/text_picked_for_you2"
@@ -193,61 +250,70 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/insights"
-                app:layout_constraintTop_toBottomOf="@+id/text_picked_for_you2"  />
+                app:layout_constraintTop_toBottomOf="@+id/text_picked_for_you2" />
 
         <View
                 android:id="@+id/divider_picked_for_you"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:background="?android:attr/listDivider"
-                app:layout_constraintTop_toBottomOf="@+id/text_picked_for_you"
-                app:layout_constraintStart_toStartOf="@+id/text_picked_for_you"/>
+                app:layout_constraintStart_toStartOf="@+id/text_picked_for_you"
+                app:layout_constraintTop_toBottomOf="@+id/text_picked_for_you" />
 
 
         <TextView
                 android:id="@+id/settings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:text="Settings"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 app:layout_constraintStart_toStartOf="@+id/accounts"
-                app:layout_constraintTop_toBottomOf="@+id/text_picked_for_you3" android:layout_marginTop="16dp" />
+                app:layout_constraintTop_toBottomOf="@+id/text_picked_for_you3" />
 
         <TextView
-                android:text="Logout"
+                android:id="@+id/text_logout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/text_logout"
+                android:paddingStart="8dp"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
+                android:text="Logout"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                app:layout_constraintTop_toBottomOf="@+id/settings"
-                app:layout_constraintStart_toStartOf="@+id/settings" android:paddingStart="8dp"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/settings"
+                app:layout_constraintTop_toBottomOf="@+id/settings" />
+
         <View
                 android:id="@+id/divider_logout"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:background="?android:attr/listDivider"
-                app:layout_constraintTop_toBottomOf="@+id/text_logout"
-                app:layout_constraintStart_toStartOf="@+id/text_logout"/>
+                app:layout_constraintStart_toStartOf="@+id/text_logout"
+                app:layout_constraintTop_toBottomOf="@+id/text_logout" />
+
         <ProgressBar
-                style="?android:attr/progressBarStyle"
-                android:visibility="gone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/progressBar"
-                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="16dp" app:layout_constraintTop_toTopOf="parent"/>
-        <TextView
-                android:text="Bank ABC"
+                style="?android:attr/progressBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
                 android:id="@+id/header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Bank ABC"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

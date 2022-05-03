@@ -17,6 +17,8 @@ import com.flybits.commons.library.api.idps.AnonymousIDP
 import com.flybits.commons.library.api.results.callbacks.BasicResultCallback
 import com.flybits.commons.library.exceptions.FlybitsException
 import com.flybits.concierge.*
+import com.flybits.concierge.enums.ConciergeOptions
+import com.flybits.concierge.enums.Container
 import com.flybits.conciergesample.R
 import com.flybits.context.ReservedContextPlugin
 import com.flybits.context.plugins.FlybitsContextPlugin
@@ -79,6 +81,19 @@ class AccountFragment: Fragment() {
         text_picked_for_you.setOnClickListener {
 
         }
+
+        val transaction = activity?.supportFragmentManager?.beginTransaction()
+        Concierge.fragment(requireContext(),
+            Container.Expose,
+            null,
+            arrayListOf(
+                ConciergeOptions.DisplayNavigation,
+                ConciergeOptions.Settings,
+                ConciergeOptions.Notifications)
+        ).let {
+            transaction?.replace(R.id.embeded_concierge, it)
+        }
+        transaction?.commit()
 
         val optIn = object : OptIn2PhaseCallback {
             override fun onOptIn2PhaseCallback(
