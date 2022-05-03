@@ -151,7 +151,7 @@ class LoginFragment : Fragment(), AuthenticationStatusListener {
                 "notification" to true,
                 "displaynavigation" to true
             )
-            findNavController().navigate(R.id.action_loginFragment_to_accountFragment, bundle)
+          //  findNavController().navigate(R.id.action_loginFragment_to_accountFragment, bundle)
         }
 
         button_WithCategories.setOnClickListener {
@@ -161,7 +161,7 @@ class LoginFragment : Fragment(), AuthenticationStatusListener {
                 "notification" to true,
                 "displaynavigation" to true
             )
-            findNavController().navigate(R.id.action_loginFragment_to_accountFragment, bundle)
+          //  findNavController().navigate(R.id.action_loginFragment_to_accountFragment, bundle)
         }
 
         button_WithExpose.setOnClickListener {
@@ -171,7 +171,7 @@ class LoginFragment : Fragment(), AuthenticationStatusListener {
                 "notification" to true,
                 "displaynavigation" to true
             )
-            findNavController().navigate(R.id.action_loginFragment_to_accountFragment, bundle)
+           // findNavController().navigate(R.id.action_loginFragment_to_accountFragment, bundle)
         }
 
         button_WithNotificationsContent.setOnClickListener {
@@ -182,7 +182,7 @@ class LoginFragment : Fragment(), AuthenticationStatusListener {
                 "displaynavigation" to true,
                 "showNotificationsApi" to true
             )
-            findNavController().navigate(R.id.action_loginFragment_to_accountFragment, bundle)
+         //   findNavController().navigate(R.id.action_loginFragment_to_accountFragment, bundle)
         }
 
         button_logout.setOnClickListener {

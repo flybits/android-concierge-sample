@@ -6,7 +6,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
         <TextView
                 android:id="@+id/accounts"
@@ -102,17 +102,6 @@
                 app:layout_constraintStart_toStartOf="@+id/text_credit"
                 app:layout_constraintTop_toBottomOf="@+id/text_credit" />
 
-        <TextView
-                android:id="@+id/information"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:textStyle="bold|italic"
-                android:text="Swipe to Concierge tab to show the configuration selected and Below is a example of Embedded Concierge with in the View:"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/amount_credit"
-                app:layout_constraintTop_toBottomOf="@+id/amount_credit" />
 
         <FrameLayout
                 android:id="@+id/embeded_concierge"
@@ -124,7 +113,7 @@
                 android:background="@android:color/holo_green_light"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/information" />
+                app:layout_constraintTop_toBottomOf="@+id/amount_credit" />
 
 
         <TextView

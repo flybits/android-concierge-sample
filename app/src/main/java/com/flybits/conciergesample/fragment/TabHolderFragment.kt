@@ -65,7 +65,7 @@ class TabHolderFragment : Fragment() {
 
             return when (position) {
                 0 -> AccountFragment.newInstance()
-                1 ->
+               /* 1 ->
                     pushExtra?.let {
                         Concierge.deepLink(it)
                     } ?: run {
@@ -74,7 +74,7 @@ class TabHolderFragment : Fragment() {
                             null,
                             conciergeOptions
                         )
-                    }
+                    }*/
                 else -> throw IllegalStateException("Tab position $position does not exist")
             }
         }
@@ -82,12 +82,12 @@ class TabHolderFragment : Fragment() {
         override fun getPageTitle(position: Int): CharSequence {
             return when (position) {
                 0 -> "Account"
-                1 -> "Concierge"
+                /*1 -> "Concierge"*/
                 else -> throw IllegalStateException("Tab position $position does not exist")
             }
         }
 
-        override fun getCount() = 2
+        override fun getCount() = 1
     }
 
     override fun onCreateView(
@@ -105,7 +105,7 @@ class TabHolderFragment : Fragment() {
             object : OnBackPressedCallback(true /* enabled by default */) {
                 override fun handleOnBackPressed() {
                     // Handle the back button event
-                    findNavController().navigate(R.id.action_accountFragment_to_loginFragment)
+                    //findNavController().navigate(R.id.action_accountFragment_to_loginFragment)
                 }
             }
         requireActivity().onBackPressedDispatcher.addCallback(this, callback)

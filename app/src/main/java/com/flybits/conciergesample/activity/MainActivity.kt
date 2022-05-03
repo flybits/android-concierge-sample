@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val appBarConfig = AppBarConfiguration
-            .Builder(R.id.tabHolderFragment, R.id.loginFragment)
+            .Builder(R.id.tabHolderFragment)
             .build()
         setupActionBarWithNavController(findNavController(R.id.nav_host_fragment), appBarConfig)
     }
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
                 intentActivity.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 intentActivity.putExtra(ConciergeConstants.PUSH_EXTRA, extra)
                 startActivity(intentActivity)*/
-                findNavController(R.id.nav_host_fragment).navigate(R.id.action_loginFragment_to_accountFragment, bundle)
+                //findNavController(R.id.nav_host_fragment).navigate(R.id.action_loginFragment_to_accountFragment, bundle)
             }
         }
     }
