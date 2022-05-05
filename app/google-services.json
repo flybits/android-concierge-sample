@@ -1,34 +1,33 @@
 {
   "project_info": {
-    "project_number": "282543898764",
-    "firebase_url": "https://conciergesample.firebaseio.com",
-    "project_id": "conciergesample",
-    "storage_bucket": "conciergesample.appspot.com"
+    "project_number": "28705041946",
+    "project_id": "concierge-sample-td",
+    "storage_bucket": "concierge-sample-td.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:282543898764:android:3ebfdf2edae102ae",
+        "mobilesdk_app_id": "1:28705041946:android:f08526f2c65b42a74f2ba3",
         "android_client_info": {
           "package_name": "com.flybits.conciergesample"
         }
       },
       "oauth_client": [
         {
-          "client_id": "282543898764-opm4r05ofhis738p5aek1akjccub76ef.apps.googleusercontent.com",
+          "client_id": "28705041946-i54e6b0gk9792easnuj6q5v4lcn8o79h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDeyczCEfu2G-icgZtEvPk68JEqxkQpTbQ"
+          "current_key": "AIzaSyAu20PfTAQRKlykUiljPzL3PnORqfJ3jOw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "282543898764-opm4r05ofhis738p5aek1akjccub76ef.apps.googleusercontent.com",
+              "client_id": "28705041946-i54e6b0gk9792easnuj6q5v4lcn8o79h.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -2,6 +2,7 @@ package com.flybits.conciergesample.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -13,15 +14,16 @@ import com.flybits.android.push.services.EXTRA_PUSH_NOTIFICATION
 import com.flybits.concierge.Concierge
 import com.flybits.concierge.ConciergeConstants
 import com.flybits.conciergesample.R
+import com.flybits.conciergesample.fragment.AccountFragment
 import com.flybits.context.ContextManager
 import com.flybits.context.ReservedContextPlugin
 
 class MainActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        handlePushIntent(intent)
         val appBarConfig = AppBarConfiguration
             .Builder(R.id.tabHolderFragment)
             .build()
@@ -37,14 +39,16 @@ class MainActivity : AppCompatActivity() {
         intent?.let {
             if (it.hasExtra(EXTRA_PUSH_NOTIFICATION)) {
                 val extra = it.getParcelableExtra<Push>(EXTRA_PUSH_NOTIFICATION)
-                val bundle = Bundle()
-                bundle.putParcelable(ConciergeConstants.PUSH_EXTRA, extra)
-                /*val intentActivity = Intent(applicationContext, DemoActivityNotificationHosting::class.java)
+                val intentActivity = Intent(this, DemoAppCompatActivityActionBar::class.java)
                 intentActivity.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 intentActivity.putExtra(ConciergeConstants.PUSH_EXTRA, extra)
-                startActivity(intentActivity)*/
-                //findNavController(R.id.nav_host_fragment).navigate(R.id.action_loginFragment_to_accountFragment, bundle)
+                startActivity(intentActivity)
             }
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
     }
 }

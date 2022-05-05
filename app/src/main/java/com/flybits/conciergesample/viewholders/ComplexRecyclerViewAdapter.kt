@@ -1,0 +1,96 @@
+package com.flybits.conciergesample.viewholders
+
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
+import com.flybits.concierge.enums.ConciergeOptions
+import com.flybits.concierge.enums.Container
+import com.flybits.conciergesample.R
+import com.flybits.conciergesample.fragment.AccountFragment
+
+class ComplexRecyclerViewAdapter     // Provide a suitable constructor (depends on the kind of dataset)
+    (  // The items to display in your RecyclerView
+    private val items: List<Any>, var context: Context
+) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private val USER = 0
+    private val Concierge = 1
+
+    // Return the size of your dataset (invoked by the layout manager)
+    override fun getItemCount(): Int {
+        return items.size
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        if (items[position] is AccountFragment.Investments) {
+            return USER
+        } else if (items[position] is String) {
+            return Concierge
+        }
+        return -1
+    }
+
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val viewHolder: RecyclerView.ViewHolder
+        val inflater = LayoutInflater.from(viewGroup.context)
+        viewHolder = when (viewType) {
+            USER -> {
+                val v1: View = inflater.inflate(R.layout.layout_viewholder1, viewGroup, false)
+                ViewHolder1(v1)
+            }
+            Concierge -> {
+                val v2: View = inflater.inflate(R.layout.layout_viewholder2, viewGroup, false)
+                ViewHolder2(v2)
+            }
+            else -> {
+                val v2: View = inflater.inflate(R.layout.layout_viewholder2, viewGroup, false)
+                ViewHolder2(v2)
+            }
+        }
+        return viewHolder
+    }
+
+    override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
+        when (viewHolder.itemViewType) {
+            USER -> {
+                val vh1 = viewHolder as ViewHolder1
+                configureViewHolder1(vh1, position)
+            }
+            Concierge -> {
+                val vh2 = viewHolder as ViewHolder2
+                configureViewHolder2(vh2, position)
+            }
+            else -> {
+
+            }
+        }
+    }
+
+    private fun configureViewHolder1(vh1: ViewHolder1, position: Int) {
+        val investments = items[position] as AccountFragment.Investments
+        if (investments != null) {
+            vh1.label1.text = "Type: " + investments.type
+            vh1.label2.text = "Amount: " + investments.amount
+        }
+    }
+
+    private fun configureViewHolder2(vh2: ViewHolder2, position: Int) {
+        val transaction = (context as AppCompatActivity).supportFragmentManager.beginTransaction()
+        com.flybits.concierge.Concierge.fragment(
+            context,
+            Container.Expose,
+            null,
+            arrayListOf(
+                ConciergeOptions.DisplayNavigation,
+                ConciergeOptions.Settings,
+                ConciergeOptions.Notifications
+            )
+        ).let {
+            transaction.replace(R.id.embeded_concierge_recycler, it)
+        }
+        transaction.commit()
+    }
+}

@@ -10,17 +10,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager
 import com.flybits.android.push.models.newPush.Push
-import com.flybits.concierge.Concierge
-import com.flybits.concierge.ConciergeConnectCallBack
 import com.flybits.concierge.ConciergeConstants
-import com.flybits.concierge.OptIn2PhaseCallback
 import com.flybits.concierge.enums.ConciergeOptions
 import com.flybits.concierge.enums.Container
 import com.flybits.conciergesample.R
-import com.flybits.flybitscoreconcierge.idps.AnonymousConciergeIDP
 import kotlinx.android.synthetic.main.fragment_tab_holder.*
 
 class TabHolderFragment : Fragment() {
@@ -64,17 +59,9 @@ class TabHolderFragment : Fragment() {
             }
 
             return when (position) {
-                0 -> AccountFragment.newInstance()
-               /* 1 ->
-                    pushExtra?.let {
-                        Concierge.deepLink(it)
-                    } ?: run {
-                        Concierge.fragment(
-                            context, containerType,
-                            null,
-                            conciergeOptions
-                        )
-                    }*/
+                0 -> {
+                    AccountFragment.newInstance()
+                }
                 else -> throw IllegalStateException("Tab position $position does not exist")
             }
         }
@@ -100,7 +87,6 @@ class TabHolderFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         val callback: OnBackPressedCallback =
             object : OnBackPressedCallback(true /* enabled by default */) {
                 override fun handleOnBackPressed() {
@@ -150,55 +136,18 @@ class TabHolderFragment : Fragment() {
                 }
             }
         })
-
-        if (LoginFragment.is2Phase) {
-            // Return Fragment for 2Phase optin flow
-            var optin = object : OptIn2PhaseCallback {
-                override fun onOptIn2PhaseCallback(
-                    optInStatus: Boolean,
-                    conciergeConnectCallback: ConciergeConnectCallBack
-                ) {
-                    if (optInStatus) {
-                    }
-                    conciergeConnectCallback.connect(
-                        AnonymousConciergeIDP(),
-                        null
-                    ) // with valid idp try different IDPS
-                    //conciergeConnectCallback.connect(null, "")  // with idp null and error string empty
-                    //conciergeConnectCallback.connect(null, "Error String")  // with idp null and valid error string
-                    // conciergeConnectCallback.connect(null, null)  // with idp null and error string null
-                }
-            }
-            /*concierge.conciergeFragment(
-                "cust1234",
-                displayConfiguration,
-                optin,
-                object : BasicResultCallback {
-                    override fun onException(exception: FlybitsException) {
-                    }
-
-                    override fun onSuccess() {
-                        view_pager.adapter = TabViewPagerAdapter(activity!!.supportFragmentManager)
-                        tabs.setupWithViewPager(view_pager)
-                    }
-                })*/
-
-        } else {
-            view_pager.adapter =
-                TabViewPagerAdapter(
-                    requireActivity().supportFragmentManager,
-                    requireContext(),
-                    isHorizontal,
-                    displayNotificationAPI,
-                    containerType,
-                    settings,
-                    notification,
-                    displaynavigation,
-                    pushExtra
-                )
-            tabs.setupWithViewPager(view_pager)
-        }
-
-
+        view_pager.adapter =
+            TabViewPagerAdapter(
+                requireActivity().supportFragmentManager,
+                requireContext(),
+                isHorizontal,
+                displayNotificationAPI,
+                containerType,
+                settings,
+                notification,
+                displaynavigation,
+                pushExtra
+            )
+        tabs.setupWithViewPager(view_pager)
     }
 }

@@ -366,26 +366,6 @@
       "light": "#FFFFFF",
       "dark": "#232323"
     },
-    "navigationBar": {
-      "backgroundColor": {
-        "light": "#FFFFFF",
-        "dark": "#121212"
-      },
-      "titleFont": {
-        "fontFamily": "sans-serif",
-        "fontSize": 20,
-        "fontWeight": "normal",
-        "fontColor": {
-          "light": "#000000",
-          "dark": "#FFFFFF"
-        },
-        "lineSpacing": 24
-      },
-      "navigationBarIconColor": {
-        "light": "#007AFF",
-        "dark": "#8DD0FF"
-      }
-    },
     "textBlockSidePadding": 16,
     "contentHeaderPadding": {
       "right": 16,
@@ -449,51 +429,21 @@
       "light": "#FFFFFF",
       "dark": "#121212"
     },
-    "navigationBar": {
-      "backgroundColor": {
-        "light": "#FFFFFF",
-        "dark": "#121212"
+    "notificationTitleFont": {
+      "fontFamily": "sans-serif",
+      "fontSize": 20,
+      "fontWeight": "normal",
+      "fontColor": {
+        "light": "#000000",
+        "dark": "#FFFFFF"
       },
-      "titleFont": {
-        "fontFamily": "sans-serif",
-        "fontSize": 20,
-        "fontWeight": "normal",
-        "fontColor": {
-          "light": "#000000",
-          "dark": "#FFFFFF"
-        },
-        "lineSpacing": 24
-      },
-      "navigationBarIconColor": {
-        "light": "#007AFF",
-        "dark": "#8DD0FF"
-      }
+      "lineSpacing": 24
     }
   },
   "settings": {
     "backgroundColor": {
       "light": "#FFFFFF",
       "dark": "#121212"
-    },
-    "navigationBar": {
-      "backgroundColor": {
-        "light": "#FFFFFF",
-        "dark": "#121212"
-      },
-      "titleFont": {
-        "fontFamily": "sans-serif",
-        "fontSize": 20,
-        "fontWeight": "normal",
-        "fontColor": {
-          "light": "#000000",
-          "dark": "#FFFFFF"
-        },
-        "lineSpacing": 24
-      },
-      "navigationBarIconColor": {
-        "light": "#007AFF",
-        "dark": "#8DD0FF"
-      }
     },
     "settingsMenuGroupLabelFont": {
       "fontFamily": "Arial",

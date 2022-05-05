@@ -2,39 +2,30 @@ package com.flybits.conciergesample.fragment
 
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.app.Activity
-import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.flybits.commons.library.api.results.callbacks.BasicResultCallback
 import com.flybits.commons.library.exceptions.FlybitsException
 import com.flybits.concierge.Concierge
-import com.flybits.concierge.ConciergeConnectCallBack
-import com.flybits.concierge.OptIn2PhaseCallback
-import com.flybits.concierge.enums.ConciergeOptions
-import com.flybits.concierge.enums.Container
 import com.flybits.conciergesample.R
-import com.flybits.context.ReservedContextPlugin
-import com.flybits.context.plugins.FlybitsContextPlugin
+import com.flybits.conciergesample.viewholders.ComplexRecyclerViewAdapter
 import com.flybits.flybitscoreconcierge.idps.AnonymousConciergeIDP
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_account.*
-import java.util.concurrent.TimeUnit
+
 
 const val LOCATION_PERMISSION_REQUEST = 123
 
 class AccountFragment : Fragment() {
-
-    var is2Phase = false
-
     companion object {
         fun newInstance(): AccountFragment {
+
             return AccountFragment()
         }
     }
@@ -52,69 +43,32 @@ class AccountFragment : Fragment() {
         activity?.let { requestPermissions(it) }
         setHasOptionsMenu(true)
 
-        is2Phase = LoginFragment.is2Phase
-
-        if (is2Phase) {
-            text_logout.setText("Go Back")
-            insights.visibility = View.GONE
-            insights2.visibility = View.VISIBLE
-            text_picked_for_you.visibility = View.GONE
-            text_picked_for_you2.visibility = View.VISIBLE
-            text_picked_for_you3.visibility = View.VISIBLE
-        } else {
-            text_logout.text = "Logout"
-            insights.visibility = View.VISIBLE
-            insights2.visibility = View.GONE
-            text_picked_for_you.visibility = View.VISIBLE
-            text_picked_for_you2.visibility = View.GONE
-            text_picked_for_you3.visibility = View.GONE
-        }
-
-        if (is2Phase && Concierge.isConnected(requireContext())!!) {
-            text_logout.text = "Logout"
-        }
-
-        // load the concierge in embedded
-        val transaction = activity?.supportFragmentManager?.beginTransaction()
-        Concierge.fragment(
-            requireContext(),
-            Container.Expose,
-            null,
-            arrayListOf(
-                ConciergeOptions.DisplayNavigation,
-                ConciergeOptions.Settings,
-                ConciergeOptions.Notifications
-            )
-        ).let {
-            transaction?.replace(R.id.embeded_concierge, it)
-        }
-        transaction?.commit()
+        text_logout.text = "Logout"
 
         text_logout.setOnClickListener {
-            if (!LoginFragment.is2Phase) {
-                progressBar.visibility = View.VISIBLE
-
-                // Call disconnect on Concierge.
-                Concierge.disconnect(requireContext(), object : BasicResultCallback {
-                    override fun onException(exception: FlybitsException) {
-                        context?.let { _ ->
-                            progressBar.visibility = View.GONE
-                            Snackbar.make(it, "Error logging out!", Snackbar.LENGTH_LONG).show()
-                        }
+            progressBar.visibility = View.VISIBLE
+            // Call disconnect on Concierge.
+            Concierge.disconnect(requireContext(), object : BasicResultCallback {
+                override fun onException(exception: FlybitsException) {
+                    context?.let { _ ->
+                        progressBar.visibility = View.GONE
+                        Snackbar.make(it, "Error logging out!", Snackbar.LENGTH_LONG).show()
                     }
+                }
 
-                    override fun onSuccess() {
-                        context?.let { _ ->
-                            LoginFragment.username = ""
-                            LoginFragment.password = ""
-                            progressBar.visibility = View.GONE
-                            Snackbar.make(it, "Logged out!", Snackbar.LENGTH_SHORT).show()
-                            //   findNavController().navigate(R.id.loginFragment)
-                        }
+                override fun onSuccess() {
+                    context?.let { _ ->
+                        progressBar.visibility = View.GONE
+                        Snackbar.make(it, "Logged out!", Snackbar.LENGTH_SHORT).show()
                     }
-                })
-            }
+                }
+            })
         }
+
+        // Recycler view
+        val adapter = context?.let { ComplexRecyclerViewAdapter(getSampleArrayList(), it) }
+        rv_common_items.adapter = adapter
+        rv_common_items.layoutManager = LinearLayoutManager(context)
     }
 
     override fun onRequestPermissionsResult(
@@ -125,13 +79,9 @@ class AccountFragment : Fragment() {
         if (requestCode == LOCATION_PERMISSION_REQUEST && grantResults.isNotEmpty()
             && grantResults[0] == PackageManager.PERMISSION_GRANTED
         ) {
-
-            val plugin = FlybitsContextPlugin.Builder(ReservedContextPlugin.LOCATION)
-                .setRefreshTime(10, 5, TimeUnit.MINUTES)
-                .build()
-            Log.d("AccountFragment", "Starting context plugin")
         }
     }
+
 
     private fun requestPermissions(activity: Activity) {
         if (ContextCompat.checkSelfPermission(
@@ -172,29 +122,36 @@ class AccountFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.login_flybits) {
-
             // Check if connected already.
             if (!Concierge.isConnected(requireContext())) {
                 // Call Connect and load the fragment.
                 Concierge.connect(requireContext(), AnonymousConciergeIDP())
-                val transaction = activity?.supportFragmentManager?.beginTransaction()
-                Concierge.fragment(
-                    requireContext(),
-                    Container.Expose,
-                    null,
-                    arrayListOf(
-                        ConciergeOptions.DisplayNavigation,
-                        ConciergeOptions.Settings,
-                        ConciergeOptions.Notifications
-                    )
-                ).let {
-                    transaction?.replace(R.id.embeded_concierge, it)
-                }
-                transaction?.commit()
+                rv_common_items.adapter?.notifyDataSetChanged()
             } else {
-                view?.let { Snackbar.make(it, "Already connected", Snackbar.LENGTH_LONG).show() }
-            }
+                Concierge.disconnect(requireContext(), object : BasicResultCallback {
+                    override fun onException(exception: FlybitsException) {
+                        context?.let { _ ->
+                            progressBar.visibility = View.GONE
+                            view?.let {
+                                Snackbar.make(
+                                    it,
+                                    "Error logging out!",
+                                    Snackbar.LENGTH_LONG
+                                ).show()
+                            }
+                        }
+                    }
 
+                    override fun onSuccess() {
+                        context?.let { _ ->
+                            progressBar.visibility = View.GONE
+                            view?.let {
+                                Snackbar.make(it, "Logged out!", Snackbar.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
+                })
+            }
             return true
         }
         return super.onOptionsItemSelected(item)
@@ -203,4 +160,17 @@ class AccountFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_options, menu)
     }
+
+
+    private fun getSampleArrayList(): ArrayList<Any> {
+        val items: ArrayList<Any> = ArrayList()
+        items.add(Investments("RRSP", "$5000"))
+        items.add(Investments("TFSA", "$10,000"))
+        items.add("Concierge")
+        items.add(Investments("GIC", "$15,5000"))
+        return items
+    }
+
+
+    data class Investments(val type: String, var amount: String)
 }

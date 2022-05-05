@@ -19,17 +19,27 @@ class GlobalApplication : Application() {
         Stetho.initializeWithDefaults(this)
         createNotificationChannel()
 
+        Concierge.setLoggingVerbosity(VerbosityLevel.ALL)
         //Call configure on Concierge
-        Concierge.configure(null, arrayListOf(
-            ContextManager.PluginType.ReservedPlugin(
-                ReservedContextPlugin
-                    .LOCATION)), applicationContext)
+        Concierge.configure(
+            null, arrayListOf(
+                ContextManager.PluginType.ReservedPlugin(
+                    ReservedContextPlugin
+                        .LOCATION
+                )
+            ), applicationContext
+        )
     }
 
-    private fun createNotificationChannel(channelId: String = CHANNEL_ID, channelName: String="CHANNEL_NAME", channelDesc: String="CHANNEL_DESC") {
+    private fun createNotificationChannel(
+        channelId: String = CHANNEL_ID,
+        channelName: String = "CHANNEL_NAME",
+        channelDesc: String = "CHANNEL_DESC"
+    ) {
         lateinit var channel: NotificationChannel
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            channel = NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH)
+            channel =
+                NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH)
             channel.description = channelDesc
             val notificationManager = getSystemService(NotificationManager::class.java)
             notificationManager.createNotificationChannel(channel)

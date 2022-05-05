@@ -102,36 +102,43 @@
                 app:layout_constraintStart_toStartOf="@+id/text_credit"
                 app:layout_constraintTop_toBottomOf="@+id/text_credit" />
 
-
-        <FrameLayout
-                android:id="@+id/embeded_concierge"
-                android:layout_width="match_parent"
+        <TextView
+                android:id="@+id/recycler_view_information"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:layout_weight="3"
-                android:background="@android:color/holo_green_light"
+                android:text="Concierge In Custom RecyclerView"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="@+id/accounts"
+                app:layout_constraintTop_toBottomOf="@+id/text_logout" />
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_common_items"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:nestedScrollingEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/amount_credit" />
-
 
         <TextView
                 android:id="@+id/investments"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:layout_marginTop="8dp"
                 android:text="Investments"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 app:layout_constraintStart_toStartOf="@+id/accounts"
-                app:layout_constraintTop_toBottomOf="@+id/embeded_concierge" />
+                app:layout_constraintTop_toBottomOf="@+id/rv_common_items" />
 
         <TextView
                 android:id="@+id/text_mutual_fund_a"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-
                 android:layout_marginTop="8dp"
                 android:text="Mutual Fund A"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
@@ -143,6 +150,8 @@
                 android:id="@+id/amount_mutual_fund_a"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:text="$13.59"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -174,81 +183,12 @@
                 android:id="@+id/amount_401k"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:text="$15,581.31"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/text_401k"
                 app:layout_constraintTop_toBottomOf="@+id/text_401k" />
-
-        <TextView
-                android:id="@+id/insights"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Insights"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                app:layout_constraintStart_toStartOf="@+id/accounts"
-                app:layout_constraintTop_toBottomOf="@+id/amount_401k" />
-
-        <TextView
-                android:id="@+id/insights2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Insights For 2 Phase"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                app:layout_constraintStart_toStartOf="@+id/accounts"
-                app:layout_constraintTop_toBottomOf="@+id/text_picked_for_you" />
-
-        <TextView
-                android:id="@+id/text_picked_for_you"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingStart="8dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:text="Picked For You"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/insights"
-                app:layout_constraintTop_toBottomOf="@+id/insights" />
-
-        <TextView
-                android:id="@+id/text_picked_for_you2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingStart="8dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:text="Picked For You with IDP"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/insights"
-                app:layout_constraintTop_toBottomOf="@+id/insights2" />
-
-        <TextView
-                android:id="@+id/text_picked_for_you3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:paddingStart="8dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:text="Picked For You with Error"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/insights"
-                app:layout_constraintTop_toBottomOf="@+id/text_picked_for_you2" />
-
-        <View
-                android:id="@+id/divider_picked_for_you"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:background="?android:attr/listDivider"
-                app:layout_constraintStart_toStartOf="@+id/text_picked_for_you"
-                app:layout_constraintTop_toBottomOf="@+id/text_picked_for_you" />
-
 
         <TextView
                 android:id="@+id/settings"
@@ -257,8 +197,9 @@
                 android:layout_marginTop="16dp"
                 android:text="Settings"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="@+id/accounts"
-                app:layout_constraintTop_toBottomOf="@+id/text_picked_for_you3" />
+                app:layout_constraintTop_toBottomOf="@+id/amount_401k" />
 
         <TextView
                 android:id="@+id/text_logout"
@@ -269,6 +210,7 @@
                 android:paddingBottom="8dp"
                 android:text="Logout"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/settings"
                 app:layout_constraintTop_toBottomOf="@+id/settings" />
