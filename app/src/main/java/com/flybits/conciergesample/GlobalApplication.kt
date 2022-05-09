@@ -20,6 +20,7 @@ class GlobalApplication : Application() {
         createNotificationChannel()
 
         Concierge.setLoggingVerbosity(VerbosityLevel.ALL)
+
         //Call configure on Concierge
         Concierge.configure(
             null, arrayListOf(

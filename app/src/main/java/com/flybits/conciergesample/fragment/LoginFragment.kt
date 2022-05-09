@@ -6,10 +6,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.flybits.commons.library.api.FlybitsConfiguration
 import com.flybits.commons.library.api.results.callbacks.BasicResultCallback
 import com.flybits.commons.library.exceptions.FlybitsException
@@ -28,17 +26,8 @@ import kotlinx.android.synthetic.main.fragment_login.*
 
 class LoginFragment : Fragment(), AuthenticationStatusListener {
 
-    // initialize variables
-    var textView: TextView? = null
-    lateinit var selectedLanguage: BooleanArray
-    var langList: ArrayList<Int> = ArrayList()
-    private var langArray =
-        arrayOf("DisplayNavigation", "Settings", "Notifications", "ShowNotifications", "Horizontal")
-
     companion object {
         var is2Phase = false
-        var username = ""
-        var password = ""
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -151,7 +140,6 @@ class LoginFragment : Fragment(), AuthenticationStatusListener {
                 "notification" to true,
                 "displaynavigation" to true
             )
-          //  findNavController().navigate(R.id.action_loginFragment_to_accountFragment, bundle)
         }
 
         button_WithCategories.setOnClickListener {
@@ -161,7 +149,6 @@ class LoginFragment : Fragment(), AuthenticationStatusListener {
                 "notification" to true,
                 "displaynavigation" to true
             )
-          //  findNavController().navigate(R.id.action_loginFragment_to_accountFragment, bundle)
         }
 
         button_WithExpose.setOnClickListener {
@@ -171,7 +158,7 @@ class LoginFragment : Fragment(), AuthenticationStatusListener {
                 "notification" to true,
                 "displaynavigation" to true
             )
-           // findNavController().navigate(R.id.action_loginFragment_to_accountFragment, bundle)
+            // findNavController().navigate(R.id.action_loginFragment_to_accountFragment, bundle)
         }
 
         button_WithNotificationsContent.setOnClickListener {
@@ -182,7 +169,6 @@ class LoginFragment : Fragment(), AuthenticationStatusListener {
                 "displaynavigation" to true,
                 "showNotificationsApi" to true
             )
-         //   findNavController().navigate(R.id.action_loginFragment_to_accountFragment, bundle)
         }
 
         button_logout.setOnClickListener {
@@ -202,10 +188,6 @@ class LoginFragment : Fragment(), AuthenticationStatusListener {
                 }
             })
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
     }
 
     override fun onDestroyView() {

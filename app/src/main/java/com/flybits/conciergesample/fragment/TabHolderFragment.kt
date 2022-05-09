@@ -69,7 +69,6 @@ class TabHolderFragment : Fragment() {
         override fun getPageTitle(position: Int): CharSequence {
             return when (position) {
                 0 -> "Account"
-                /*1 -> "Concierge"*/
                 else -> throw IllegalStateException("Tab position $position does not exist")
             }
         }
@@ -89,17 +88,9 @@ class TabHolderFragment : Fragment() {
         super.onCreate(savedInstanceState)
         val callback: OnBackPressedCallback =
             object : OnBackPressedCallback(true /* enabled by default */) {
-                override fun handleOnBackPressed() {
-                    // Handle the back button event
-                    //findNavController().navigate(R.id.action_accountFragment_to_loginFragment)
-                }
+                override fun handleOnBackPressed() {}
             }
         requireActivity().onBackPressedDispatcher.addCallback(this, callback)
-    }
-
-    override fun onResume() {
-        super.onResume()
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

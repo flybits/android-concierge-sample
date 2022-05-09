@@ -11,12 +11,9 @@ import com.flybits.concierge.enums.Container
 import com.flybits.conciergesample.R
 import com.flybits.conciergesample.fragment.AccountFragment
 
-class ComplexRecyclerViewAdapter     // Provide a suitable constructor (depends on the kind of dataset)
-    (  // The items to display in your RecyclerView
-    private val items: List<Any>, var context: Context
-) :
+class ComplexRecyclerViewAdapter(private val items: List<Any>, var context: Context) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private val USER = 0
+    private val Investment = 0
     private val Concierge = 1
 
     // Return the size of your dataset (invoked by the layout manager)
@@ -26,7 +23,7 @@ class ComplexRecyclerViewAdapter     // Provide a suitable constructor (depends 
 
     override fun getItemViewType(position: Int): Int {
         if (items[position] is AccountFragment.Investments) {
-            return USER
+            return Investment
         } else if (items[position] is String) {
             return Concierge
         }
@@ -37,7 +34,7 @@ class ComplexRecyclerViewAdapter     // Provide a suitable constructor (depends 
         val viewHolder: RecyclerView.ViewHolder
         val inflater = LayoutInflater.from(viewGroup.context)
         viewHolder = when (viewType) {
-            USER -> {
+            Investment -> {
                 val v1: View = inflater.inflate(R.layout.layout_viewholder1, viewGroup, false)
                 ViewHolder1(v1)
             }
@@ -55,7 +52,7 @@ class ComplexRecyclerViewAdapter     // Provide a suitable constructor (depends 
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
         when (viewHolder.itemViewType) {
-            USER -> {
+            Investment -> {
                 val vh1 = viewHolder as ViewHolder1
                 configureViewHolder1(vh1, position)
             }
@@ -71,10 +68,8 @@ class ComplexRecyclerViewAdapter     // Provide a suitable constructor (depends 
 
     private fun configureViewHolder1(vh1: ViewHolder1, position: Int) {
         val investments = items[position] as AccountFragment.Investments
-        if (investments != null) {
-            vh1.label1.text = "Type: " + investments.type
-            vh1.label2.text = "Amount: " + investments.amount
-        }
+        vh1.label1.text = "Type: ${investments.type}"
+        vh1.label2.text = "Amount: ${investments.amount}"
     }
 
     private fun configureViewHolder2(vh2: ViewHolder2, position: Int) {
