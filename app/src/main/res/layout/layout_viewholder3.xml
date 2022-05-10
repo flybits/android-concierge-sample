@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/llContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+    <TextView
+            android:id="@+id/accounts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Accounts"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6" />
+
+    <TextView
+            android:id="@+id/text_chequing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Chequing"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+
+    <TextView
+            android:id="@+id/amount_chequing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="$200.00"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+
+    <View
+            android:id="@+id/divider_chequing"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:background="?android:attr/listDivider" />
+
+    <TextView
+            android:id="@+id/text_savings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Savings"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+
+    <TextView
+            android:id="@+id/amount_savings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="$12.00"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+
+    <View
+            android:id="@+id/divider_savings"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="?android:attr/listDivider" />
+
+    <TextView
+            android:id="@+id/text_credit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Credit"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+
+    <TextView
+            android:id="@+id/amount_credit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="$12,000.00"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+</LinearLayout>

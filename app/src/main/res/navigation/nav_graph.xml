@@ -2,14 +2,14 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/nav_graph"
-        app:startDestination="@+id/tabHolderFragment">
+        app:startDestination="@+id/account_fragment">
     <fragment
-            android:id="@+id/tabHolderFragment"
-            android:name="com.flybits.conciergesample.fragment.TabHolderFragment"
+            android:id="@+id/account_fragment"
+            android:name="com.flybits.conciergesample.fragment.AccountFragment"
             android:label="Account">
         <action
                 android:id="@+id/action_accountFragment"
-                app:destination="@id/tabHolderFragment"
+                app:destination="@id/account_fragment"
                 app:launchSingleTop="false"
                 app:popUpTo="@+id/nav_graph"
                 app:popUpToInclusive="true" />

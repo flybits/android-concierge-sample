@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         handlePushIntent(intent)
         val appBarConfig = AppBarConfiguration
-            .Builder(R.id.tabHolderFragment)
+            .Builder(R.id.account_fragment)
             .build()
         setupActionBarWithNavController(findNavController(R.id.nav_host_fragment), appBarConfig)
     }

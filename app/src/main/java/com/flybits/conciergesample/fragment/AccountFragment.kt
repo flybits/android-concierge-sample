@@ -25,7 +25,6 @@ const val LOCATION_PERMISSION_REQUEST = 123
 class AccountFragment : Fragment() {
     companion object {
         fun newInstance(): AccountFragment {
-
             return AccountFragment()
         }
     }
@@ -42,28 +41,6 @@ class AccountFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         activity?.let { requestPermissions(it) }
         setHasOptionsMenu(true)
-
-        text_logout.text = "Logout"
-
-        text_logout.setOnClickListener {
-            progressBar.visibility = View.VISIBLE
-            // Call disconnect on Concierge.
-            Concierge.disconnect(requireContext(), object : BasicResultCallback {
-                override fun onException(exception: FlybitsException) {
-                    context?.let { _ ->
-                        progressBar.visibility = View.GONE
-                        Snackbar.make(it, "Error logging out!", Snackbar.LENGTH_LONG).show()
-                    }
-                }
-
-                override fun onSuccess() {
-                    context?.let { _ ->
-                        progressBar.visibility = View.GONE
-                        Snackbar.make(it, "Logged out!", Snackbar.LENGTH_SHORT).show()
-                    }
-                }
-            })
-        }
 
         // Recycler view
         val adapter = context?.let { ComplexRecyclerViewAdapter(getSampleArrayList(), it) }
@@ -164,6 +141,7 @@ class AccountFragment : Fragment() {
 
     private fun getSampleArrayList(): ArrayList<Any> {
         val items: ArrayList<Any> = ArrayList()
+        items.add(Savings("$4,000","$5,000","10,000"))
         items.add(Investments("RRSP", "$5000"))
         items.add(Investments("TFSA", "$10,000"))
         items.add("Concierge")
@@ -173,4 +151,6 @@ class AccountFragment : Fragment() {
 
 
     data class Investments(val type: String, var amount: String)
+
+    data class Savings(val amount_cheq: String, var amount_savings: String, var amount_credit:String)
 }

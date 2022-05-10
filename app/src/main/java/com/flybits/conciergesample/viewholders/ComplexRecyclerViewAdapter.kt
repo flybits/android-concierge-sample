@@ -15,6 +15,7 @@ class ComplexRecyclerViewAdapter(private val items: List<Any>, var context: Cont
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val Investment = 0
     private val Concierge = 1
+    private val Savings = 2
 
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount(): Int {
@@ -26,6 +27,8 @@ class ComplexRecyclerViewAdapter(private val items: List<Any>, var context: Cont
             return Investment
         } else if (items[position] is String) {
             return Concierge
+        } else if (items[position] is AccountFragment.Savings) {
+            return Savings
         }
         return -1
     }
@@ -41,6 +44,10 @@ class ComplexRecyclerViewAdapter(private val items: List<Any>, var context: Cont
             Concierge -> {
                 val v2: View = inflater.inflate(R.layout.layout_viewholder2, viewGroup, false)
                 ViewHolder2(v2)
+            }
+            Savings -> {
+                val v2: View = inflater.inflate(R.layout.layout_viewholder3, viewGroup, false)
+                ViewHolder3(v2)
             }
             else -> {
                 val v2: View = inflater.inflate(R.layout.layout_viewholder2, viewGroup, false)
@@ -59,6 +66,10 @@ class ComplexRecyclerViewAdapter(private val items: List<Any>, var context: Cont
             Concierge -> {
                 val vh2 = viewHolder as ViewHolder2
                 configureViewHolder2(vh2, position)
+            }
+            Savings -> {
+                val vh3 = viewHolder as ViewHolder3
+                configureViewHolder3(vh3, position)
             }
             else -> {
 
@@ -87,5 +98,12 @@ class ComplexRecyclerViewAdapter(private val items: List<Any>, var context: Cont
             transaction.replace(R.id.embeded_concierge_recycler, it)
         }
         transaction.commit()
+    }
+
+    private fun configureViewHolder3(vh3: ViewHolder3, position: Int) {
+        val savings = items[position] as AccountFragment.Savings
+        vh3.amount_chequing.text = savings.amount_cheq
+        vh3.amount_credit.text = savings.amount_credit
+        vh3.amount_savings.text = savings.amount_savings
     }
 }
