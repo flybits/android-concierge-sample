@@ -8,6 +8,7 @@ import android.os.Build
 import com.facebook.stetho.Stetho
 import com.flybits.commons.library.logging.VerbosityLevel
 import com.flybits.concierge.Concierge
+import com.flybits.concierge.FlybitsConciergeConfiguration
 import com.flybits.context.ContextManager
 import com.flybits.context.ReservedContextPlugin
 
@@ -19,16 +20,19 @@ class GlobalApplication : Application() {
         Stetho.initializeWithDefaults(this)
         createNotificationChannel()
 
+
+
+        val config = FlybitsConciergeConfiguration.Builder(applicationContext)
+            .setGateWayUrl("https://api.demo.flybits.com")
+            .setProjectId("2CE41988-B1D3-4116-98DD-42FFB8754384")
+            .build()
+
+
         Concierge.setLoggingVerbosity(VerbosityLevel.ALL)
 
         //Call configure on Concierge
-        Concierge.configure(
-            null, arrayListOf(
-                ContextManager.PluginType.ReservedPlugin(
-                    ReservedContextPlugin
-                        .LOCATION
-                )
-            ), applicationContext
+        Concierge.configure(config, emptyList(),applicationContext)
+
         )
     }
 
