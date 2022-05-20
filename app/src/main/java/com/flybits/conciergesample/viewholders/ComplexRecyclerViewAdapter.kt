@@ -90,7 +90,7 @@ class ComplexRecyclerViewAdapter(private val items: List<Any>, var context: Cont
             Container.Expose,
             null,
             arrayListOf(
-                ConciergeOptions.DisplayNavigation,
+                ConciergeOptions.DisplayNavigation(),
                 ConciergeOptions.Settings,
                 ConciergeOptions.Notifications
             )
