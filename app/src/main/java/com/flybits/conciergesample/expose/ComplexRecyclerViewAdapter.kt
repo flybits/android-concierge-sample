@@ -94,7 +94,7 @@ class ComplexRecyclerViewAdapter(private val items: List<Any>, var context: Cont
                 ConciergeOptions.Notifications
             )
         ).let {
-            transaction.replace(R.id.embeded_concierge_recycler, it)
+            transaction.replace(vh2.frameLayout.id, it)
         }
         transaction.commit()
     }
