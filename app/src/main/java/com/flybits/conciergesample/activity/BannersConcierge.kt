@@ -1,59 +1,52 @@
 package com.flybits.conciergesample.activity
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import com.flybits.commons.library.api.results.callbacks.BasicResultCallback
-import com.flybits.commons.library.exceptions.FlybitsException
-import com.flybits.concierge.Concierge
-import com.flybits.concierge.enums.ConciergeOptions
-import com.flybits.concierge.enums.Container
-import com.flybits.concierge.enums.ContentStyle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.Navigation
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import com.flybits.android.push.models.newPush.Push
+import com.flybits.android.push.services.EXTRA_PUSH_NOTIFICATION
+import com.flybits.concierge.ConciergeConstants
 import com.flybits.conciergesample.R
-import com.flybits.flybitscoreconcierge.idps.AnonymousConciergeIDP
+
 
 class BannersConcierge : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_banners_concierge)
-        val transaction = supportFragmentManager.beginTransaction()
+        setContentView(R.layout.activity_main)
 
-        Concierge.fragment(
-            this,
-            Container.None,
-            emptyList(),
-            arrayListOf(
-                ConciergeOptions.Style(ContentStyle.BANNER)
-            )
-        ).let {
-            transaction.replace(R.id.concierge_framelayout, it)
-        }
-
-        transaction.commit()
-
+        handlePushIntent(intent)
+        val appBarConfig = AppBarConfiguration
+            .Builder(R.id.banners_fragment)
+            .build()
+        val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+        val navGraph = navController.navInflater.inflate(R.navigation.nav_graph)
+        navGraph.startDestination = R.id.banners_fragment
+        navController.graph = navGraph
+        setupActionBarWithNavController(navController, appBarConfig)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_options, menu)
-        return true
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        handlePushIntent(intent)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.login_flybits) {
-            // Check if connected already.
-            if (!Concierge.isConnected(this)) {
-                // Call Connect and load the fragment.
-                Concierge.connect(this, AnonymousConciergeIDP())
-            } else {
-                Concierge.disconnect(this, object : BasicResultCallback {
-                    override fun onException(exception: FlybitsException) {}
-
-                    override fun onSuccess() {}
-                })
+    private fun handlePushIntent(intent: Intent?) {
+        intent?.let {
+            if (it.hasExtra(EXTRA_PUSH_NOTIFICATION)) {
+                val extra = it.getParcelableExtra<Push>(EXTRA_PUSH_NOTIFICATION)
+                val intentActivity = Intent(this, DemoAppCompatActivityActionBar::class.java)
+                intentActivity.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                intentActivity.putExtra(ConciergeConstants.PUSH_EXTRA, extra)
+                startActivity(intentActivity)
             }
-            return true
         }
-        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
     }
 }

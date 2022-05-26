@@ -2,14 +2,26 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/nav_graph"
-        app:startDestination="@+id/account_fragment">
+        app:startDestination="@+id/banners_fragment">
     <fragment
-            android:id="@+id/account_fragment"
-            android:name="com.flybits.conciergesample.fragment.AccountFragment"
-            android:label="Account">
+            android:id="@+id/expose_fragment"
+            android:name="com.flybits.conciergesample.expose.FragmentForExpose"
+            android:label="Expose">
         <action
-                android:id="@+id/action_accountFragment"
-                app:destination="@id/account_fragment"
+                android:id="@+id/action_exposeFragment"
+                app:destination="@id/expose_fragment"
+                app:launchSingleTop="false"
+                app:popUpTo="@+id/nav_graph"
+                app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+            android:id="@+id/banners_fragment"
+            android:name="com.flybits.conciergesample.banners.FragmentForBanners"
+            android:label="Banners">
+        <action
+                android:id="@+id/action_bannersFragment"
+                app:destination="@id/banners_fragment"
                 app:launchSingleTop="false"
                 app:popUpTo="@+id/nav_graph"
                 app:popUpToInclusive="true" />

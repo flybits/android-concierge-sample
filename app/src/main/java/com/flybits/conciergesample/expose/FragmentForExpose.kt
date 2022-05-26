@@ -1,4 +1,4 @@
-package com.flybits.conciergesample.fragment
+package com.flybits.conciergesample.expose
 
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.app.Activity
@@ -14,7 +14,6 @@ import com.flybits.commons.library.api.results.callbacks.BasicResultCallback
 import com.flybits.commons.library.exceptions.FlybitsException
 import com.flybits.concierge.Concierge
 import com.flybits.conciergesample.R
-import com.flybits.conciergesample.viewholders.ComplexRecyclerViewAdapter
 import com.flybits.flybitscoreconcierge.idps.AnonymousConciergeIDP
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_account.*
@@ -22,10 +21,10 @@ import kotlinx.android.synthetic.main.fragment_account.*
 
 const val LOCATION_PERMISSION_REQUEST = 123
 
-class AccountFragment : Fragment() {
+class FragmentForExpose : Fragment() {
     companion object {
-        fun newInstance(): AccountFragment {
-            return AccountFragment()
+        fun newInstance(): FragmentForExpose {
+            return FragmentForExpose()
         }
     }
 

@@ -1,21 +1,21 @@
 {
   "navigationBar": {
     "backgroundColor": {
-      "light": "#00FF00",
+      "light": "#FFFFFF",
       "dark": "#121212"
     },
     "feedTitleFont": {
       "fontFamily": "sans-serif",
-      "fontSize": 30,
-      "fontWeight": "bold",
+      "fontSize": 20,
+      "fontWeight": "normal",
       "fontColor": {
-        "light": "#FF0000",
+        "light": "#000000",
         "dark": "#FFFFFF"
       },
       "lineSpacing": 24
     },
     "feedNavigationBarIconColor": {
-      "light": "#FF00FF",
+      "light": "#007AFF",
       "dark": "#8DD0FF"
     }
   },
@@ -106,8 +106,8 @@
       "dark": "#EAEAEA"
     },
     "loadingSpinnerContentFeedColor": {
-      "light": "#76CF8D",
-      "dark": "#fecb2e"
+      "light": "#000000",
+      "dark": "#FFFFFF"
     },
     "loadingSpinnerPullToRefreshColor": {
       "light": "#000000",
@@ -170,9 +170,13 @@
       }
     }
   },
+  "horizontalLayout": {
+    "containerHeight": 412,
+    "contentCardHeight": "77%"
+  },
   "contentCards": {
     "backgroundColor": {
-      "light": "#000000",
+      "light": "#FFFFFF",
       "dark": "#232323"
     },
     "marginSide": 8,
@@ -216,32 +220,32 @@
     "contentDescriptionPadding": {
       "top": 8,
       "bottom": 0,
-      "right": 0,
-      "left": 0
+      "right": 16,
+      "left": 16
     },
     "contentHeaderFont": {
       "fontFamily": "sans-serif",
-      "fontSize": 18,
+      "fontSize": 12,
       "fontWeight": "normal",
       "fontColor": {
-        "light": "#FFFFFF",
-        "dark": "#000000"
+        "light": "#505A72",
+        "dark": "#C4C4C4"
       },
       "lineSpacing": 16
     },
     "contentTitleFont": {
       "fontFamily": "sans-serif",
-      "fontSize": 10,
+      "fontSize": 17,
       "fontWeight": "bold",
       "fontColor": {
-        "light": "#F4FCFF",
+        "light": "#000000",
         "dark": "#FFFFFF"
       },
       "lineSpacing": 28
     },
     "contentDescriptionFont": {
       "fontFamily": "sans-serif",
-      "fontSize": 15,
+      "fontSize": 14,
       "fontWeight": "normal",
       "fontColor": {
         "light": "#505A72",
@@ -255,11 +259,11 @@
     },
     "link": {
       "fontFamily": "sans-serif",
-      "fontSize": 22,
+      "fontSize": 14,
       "fontWeight": "bold",
       "fontColor": {
-        "light": "#FFFFFF",
-        "dark": "#232323"
+        "light": "#007AFF",
+        "dark": "#8DD0FF"
       },
       "lineSpacing": 16,
       "textAllCaps": true
@@ -279,10 +283,10 @@
     "primaryButton": {
       "buttonTextFont": {
         "fontFamily": "sans-serif",
-        "fontSize": 20,
+        "fontSize": 14,
         "fontWeight": "normal",
         "fontColor": {
-          "light": "#005692",
+          "light": "#FFFFFF",
           "dark": "#000000"
         }
       },
@@ -319,11 +323,11 @@
     "secondaryButton": {
       "buttonTextFont": {
         "fontFamily": "sans-serif",
-        "fontSize": 22,
+        "fontSize": 14,
         "fontWeight": "normal",
         "fontColor": {
-          "light": "#005692",
-          "dark": "#FFFFFF"
+          "light": "#007AFF",
+          "dark": "#8DD0FF"
         }
       },
       "buttonBackgroundColor": {
@@ -527,10 +531,10 @@
     },
     "navigationTitleFont": {
       "fontFamily": "sans-serif",
-      "fontSize": 30,
-      "fontWeight": "bold",
+      "fontSize": 20,
+      "fontWeight": "normal",
       "fontColor": {
-        "light": "#005692",
+        "light": "#000000",
         "dark": "#FFFFFF"
       },
       "lineSpacing": 24
@@ -556,10 +560,10 @@
     "conciergeBenefits": {
       "optInTitleFont": {
         "fontFamily": "sans-serif",
-        "fontSize": 10,
-        "fontWeight": "normal",
+        "fontSize": 20,
+        "fontWeight": "bold",
         "fontColor": {
-          "light": "#007AFF",
+          "light": "#000000",
           "dark": "#FFFFFF"
         },
         "lineSpacing": 24
@@ -569,7 +573,7 @@
         "fontSize": 17,
         "fontWeight": "normal",
         "fontColor": {
-          "light": "#007AFF",
+          "light": "#000000",
           "dark": "#FFFFFF"
         },
         "lineSpacing": 22
@@ -585,10 +589,10 @@
       "primaryButtonEnabledState": {
         "buttonTextFont": {
           "fontFamily": "sans-serif",
-          "fontSize": 20,
-          "fontWeight": "bold",
+          "fontSize": 14,
+          "fontWeight": "normal",
           "fontColor": {
-            "light": "#5B5C5E",
+            "light": "#FFFFFF",
             "dark": "#000000"
           },
           "lineSpacing": 16,
@@ -621,10 +625,10 @@
       "primaryButtonDisabledState": {
         "buttonTextFont": {
           "fontFamily": "sans-serif",
-          "fontSize": 20,
-          "fontWeight": "bold",
+          "fontSize": 14,
+          "fontWeight": "normal",
           "fontColor": {
-            "light": "#5B5C5E",
+            "light": "#B4B8C3",
             "dark": "#EFF3FF"
           },
           "lineSpacing": 16,
@@ -655,19 +659,19 @@
         }
       },
       "optInCheckboxSelectedStateBackgroundColor": {
-        "light": "#FF0000",
-        "dark": "#00FF00"
+        "light": "#007AFF",
+        "dark": "#8DD0FF"
       },
       "optInCheckboxUnselectedStateBackgroundColor": {
-        "light": "#0000FF",
+        "light": "#C4C4C4",
         "dark": "#F2F3F5"
       },
       "optInDisclaimerFont": {
         "fontFamily": "sans-serif",
-        "fontSize": 15,
-        "fontWeight": "bold",
+        "fontSize": 12,
+        "fontWeight": "normal",
         "fontColor": {
-          "light": "#007AFF",
+          "light": "#000000",
           "dark": "#FFFFFF"
         },
         "lineSpacing": 16
@@ -676,10 +680,10 @@
     "locationServiceBenefits": {
       "optInTitleFont": {
         "fontFamily": "sans-serif",
-        "fontSize": 30,
-        "fontWeight": "normal",
+        "fontSize": 20,
+        "fontWeight": "bold",
         "fontColor": {
-          "light": "#007AFF",
+          "light": "#000000",
           "dark": "#FFFFFF"
         },
         "lineSpacing": 24
@@ -697,10 +701,10 @@
       "primaryButton": {
         "buttonTextFont": {
           "fontFamily": "sans-serif",
-          "fontSize": 20,
-          "fontWeight": "bold",
+          "fontSize": 14,
+          "fontWeight": "normal",
           "fontColor": {
-            "light": "#000000",
+            "light": "#FFFFFF",
             "dark": "#000000"
           },
           "lineSpacing": 16,
@@ -733,10 +737,10 @@
       "secondaryButton": {
         "buttonTextFont": {
           "fontFamily": "sans-serif",
-          "fontSize": 30,
-          "fontWeight": "normal",
+          "fontSize": 14,
+          "fontWeight": "bold",
           "fontColor": {
-            "light": "#000000",
+            "light": "#007AFF",
             "dark": "#8DD0FF"
           },
           "lineSpacing": 16
@@ -768,10 +772,10 @@
     "notificationBenefits": {
       "optInTitleFont": {
         "fontFamily": "sans-serif",
-        "fontSize": 30,
-        "fontWeight": "normal",
+        "fontSize": 20,
+        "fontWeight": "bold",
         "fontColor": {
-          "light": "#5B5C5E",
+          "light": "#000000",
           "dark": "#FFFFFF"
         },
         "lineSpacing": 24
@@ -789,10 +793,10 @@
       "primaryButton": {
         "buttonTextFont": {
           "fontFamily": "sans-serif",
-          "fontSize": 20,
-          "fontWeight": "bold",
+          "fontSize": 14,
+          "fontWeight": "normal",
           "fontColor": {
-            "light": "#5B5C5E",
+            "light": "#FFFFFF",
             "dark": "#000000"
           },
           "lineSpacing": 16,
@@ -858,10 +862,10 @@
       },
       "notificationDisclaimerFont": {
         "fontFamily": "sans-serif",
-        "fontSize": 16,
-        "fontWeight": "bold",
+        "fontSize": 12,
+        "fontWeight": "normal",
         "fontColor": {
-          "light": "#007AFF",
+          "light": "#000000",
           "dark": "#FFFFFF"
         },
         "lineSpacing": 16
@@ -870,8 +874,8 @@
     "optOut": {
       "optOutTitleFont": {
         "fontFamily": "sans-serif",
-        "fontSize": 10,
-        "fontWeight": "normal",
+        "fontSize": 20,
+        "fontWeight": "bold",
         "fontColor": {
           "light": "#000000",
           "dark": "#FFFFFF"
@@ -891,10 +895,10 @@
       "primaryButton": {
         "buttonTextFont": {
           "fontFamily": "sans-serif",
-          "fontSize": 30,
-          "fontWeight": "bold",
+          "fontSize": 14,
+          "fontWeight": "normal",
           "fontColor": {
-            "light": "#000000",
+            "light": "#FFFFFF",
             "dark": "#000000"
           },
           "lineSpacing": 16,
@@ -927,10 +931,10 @@
       "secondaryButton": {
         "buttonTextFont": {
           "fontFamily": "sans-serif",
-          "fontSize": 20,
-          "fontWeight": "normal",
+          "fontSize": 14,
+          "fontWeight": "bold",
           "fontColor": {
-            "light": "#8DD0FF",
+            "light": "#007AFF",
             "dark": "#8DD0FF"
           },
           "lineSpacing": 16

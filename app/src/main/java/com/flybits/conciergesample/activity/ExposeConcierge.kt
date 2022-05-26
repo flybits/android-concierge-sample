@@ -2,32 +2,29 @@ package com.flybits.conciergesample.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
+import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.flybits.android.push.models.newPush.DisplayablePush
 import com.flybits.android.push.models.newPush.Push
 import com.flybits.android.push.services.EXTRA_PUSH_NOTIFICATION
-import com.flybits.concierge.Concierge
 import com.flybits.concierge.ConciergeConstants
 import com.flybits.conciergesample.R
-import com.flybits.conciergesample.fragment.AccountFragment
-import com.flybits.context.ContextManager
-import com.flybits.context.ReservedContextPlugin
 
-class MainActivity : AppCompatActivity() {
+class ExposeConcierge : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         handlePushIntent(intent)
         val appBarConfig = AppBarConfiguration
-            .Builder(R.id.account_fragment)
+            .Builder(R.id.expose_fragment)
             .build()
-        setupActionBarWithNavController(findNavController(R.id.nav_host_fragment), appBarConfig)
+        val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+        val navGraph = navController.navInflater.inflate(R.navigation.nav_graph)
+        navGraph.startDestination = R.id.expose_fragment
+        navController.graph = navGraph
+        setupActionBarWithNavController(navController, appBarConfig)
     }
 
     override fun onNewIntent(intent: Intent?) {
