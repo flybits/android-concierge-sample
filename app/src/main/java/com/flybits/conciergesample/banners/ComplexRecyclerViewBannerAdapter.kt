@@ -90,7 +90,6 @@ class ComplexRecyclerViewBannerAdapter(private val items: List<Any>, var context
             Container.Expose,
             null,
             arrayListOf(
-                ConciergeOptions.Horizontal,
                 ConciergeOptions.Style(ContentStyle.BANNER)
             )
         ).let {
