@@ -18,7 +18,7 @@
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
         <activity
-                android:name=".activity.Fullscreen_Concierge"
+                android:name=".activity.BannersConcierge"
                 android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,9 +27,17 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".activity.MainActivity"
-                android:exported="true"
-                android:launchMode="singleTop">
+                android:name=".activity.FullscreenConcierge"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+                android:name=".activity.ExposeConcierge"
+                android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,4 +1,4 @@
-package com.flybits.conciergesample.viewholders
+package com.flybits.conciergesample.expose
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.flybits.concierge.enums.ConciergeOptions
 import com.flybits.concierge.enums.Container
 import com.flybits.conciergesample.R
-import com.flybits.conciergesample.fragment.AccountFragment
 
 class ComplexRecyclerViewAdapter(private val items: List<Any>, var context: Context) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -23,11 +22,11 @@ class ComplexRecyclerViewAdapter(private val items: List<Any>, var context: Cont
     }
 
     override fun getItemViewType(position: Int): Int {
-        if (items[position] is AccountFragment.Investments) {
+        if (items[position] is FragmentForExpose.Investments) {
             return Investment
         } else if (items[position] is String) {
             return Concierge
-        } else if (items[position] is AccountFragment.Savings) {
+        } else if (items[position] is FragmentForExpose.Savings) {
             return Savings
         }
         return -1
@@ -78,7 +77,7 @@ class ComplexRecyclerViewAdapter(private val items: List<Any>, var context: Cont
     }
 
     private fun configureViewHolder1(vh1: ViewHolder1, position: Int) {
-        val investments = items[position] as AccountFragment.Investments
+        val investments = items[position] as FragmentForExpose.Investments
         vh1.label1.text = "Type: ${investments.type}"
         vh1.label2.text = "Amount: ${investments.amount}"
     }
@@ -90,18 +89,18 @@ class ComplexRecyclerViewAdapter(private val items: List<Any>, var context: Cont
             Container.Expose,
             null,
             arrayListOf(
-                ConciergeOptions.DisplayNavigation,
+                ConciergeOptions.DisplayNavigation(),
                 ConciergeOptions.Settings,
                 ConciergeOptions.Notifications
             )
         ).let {
-            transaction.replace(R.id.embeded_concierge_recycler, it)
+            transaction.replace(vh2.frameLayout.id, it)
         }
         transaction.commit()
     }
 
     private fun configureViewHolder3(vh3: ViewHolder3, position: Int) {
-        val savings = items[position] as AccountFragment.Savings
+        val savings = items[position] as FragmentForExpose.Savings
         vh3.amount_chequing.text = savings.amount_cheq
         vh3.amount_credit.text = savings.amount_credit
         vh3.amount_savings.text = savings.amount_savings

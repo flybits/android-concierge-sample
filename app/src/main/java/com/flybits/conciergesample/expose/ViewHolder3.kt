@@ -1,4 +1,4 @@
-package com.flybits.conciergesample.viewholders
+package com.flybits.conciergesample.expose
 
 import android.view.View
 import android.widget.TextView

@@ -366,6 +366,26 @@
       "light": "#FFFFFF",
       "dark": "#232323"
     },
+    "navigationBar": {
+      "backgroundColor": {
+        "light": "#FFFFFF",
+        "dark": "#121212"
+      },
+      "titleFont": {
+        "fontFamily": "sans-serif",
+        "fontSize": 20,
+        "fontWeight": "normal",
+        "fontColor": {
+          "light": "#000000",
+          "dark": "#FFFFFF"
+        },
+        "lineSpacing": 24
+      },
+      "navigationBarIconColor": {
+        "light": "#007AFF",
+        "dark": "#8DD0FF"
+      }
+    },
     "textBlockSidePadding": 16,
     "contentHeaderPadding": {
       "right": 16,
@@ -429,21 +449,51 @@
       "light": "#FFFFFF",
       "dark": "#121212"
     },
-    "notificationTitleFont": {
-      "fontFamily": "sans-serif",
-      "fontSize": 20,
-      "fontWeight": "normal",
-      "fontColor": {
-        "light": "#000000",
-        "dark": "#FFFFFF"
+    "navigationBar": {
+      "backgroundColor": {
+        "light": "#FFFFFF",
+        "dark": "#121212"
       },
-      "lineSpacing": 24
+      "titleFont": {
+        "fontFamily": "sans-serif",
+        "fontSize": 20,
+        "fontWeight": "normal",
+        "fontColor": {
+          "light": "#000000",
+          "dark": "#FFFFFF"
+        },
+        "lineSpacing": 24
+      },
+      "navigationBarIconColor": {
+        "light": "#007AFF",
+        "dark": "#8DD0FF"
+      }
     }
   },
   "settings": {
     "backgroundColor": {
       "light": "#FFFFFF",
       "dark": "#121212"
+    },
+    "navigationBar": {
+      "backgroundColor": {
+        "light": "#FFFFFF",
+        "dark": "#121212"
+      },
+      "titleFont": {
+        "fontFamily": "sans-serif",
+        "fontSize": 20,
+        "fontWeight": "normal",
+        "fontColor": {
+          "light": "#000000",
+          "dark": "#FFFFFF"
+        },
+        "lineSpacing": 24
+      },
+      "navigationBarIconColor": {
+        "light": "#007AFF",
+        "dark": "#8DD0FF"
+      }
     },
     "settingsMenuGroupLabelFont": {
       "fontFamily": "Arial",
@@ -910,6 +960,146 @@
           },
           "opacity": 2,
           "radius": 18
+        }
+      }
+    }
+  },
+  "expose": {
+    "container": {
+      "backgroundColor": {
+        "light": "#00000000",
+        "dark": "#00000000"
+      },
+      "sectionTitleFont": {
+        "fontFamily": "sans-serif",
+        "fontSize": 15,
+        "fontWeight": "bold",
+        "fontColor": {
+          "light": "#000000",
+          "dark": "#FFFFFF"
+        },
+        "lineSpacing": 20
+      },
+      "callToActionTitleFont": {
+        "fontFamily": "sans-serif",
+        "fontSize": 15,
+        "fontWeight": "normal",
+        "fontColor": {
+          "light": "#007AFF",
+          "dark": "#8DD0FF"
+        },
+        "lineSpacing": 20,
+        "textAllCaps": false
+      }
+    }
+  },
+  "banners": {
+    "paginationActiveState": {
+      "light": "#000000",
+      "dark": "#FFFFFF"
+    },
+    "paginationInactiveState": {
+      "light": "#BDBDBD",
+      "dark": "#646464"
+    },
+    "contentBanner": {
+      "backgroundColor": {
+        "light": "#FDF8E1",
+        "dark": "#232323"
+      },
+      "marginSide": 16,
+      "borderColor": {
+        "light": "#FDF8E1",
+        "dark": "#232323"
+      },
+      "borderRadius": 16,
+      "borderWidth": 0,
+      "shadow": {
+        "color": {
+          "light": "#000000",
+          "dark": "#6DF3E3"
+        },
+        "offset": {
+          "width": 0,
+          "height": 1
+        },
+        "opacity": 15,
+        "radius": 3,
+        "elevation": 2
+      },
+      "contentHeaderFont": {
+        "fontFamily": "sans-serif",
+        "fontSize": 12,
+        "fontWeight": "normal",
+        "fontColor": {
+          "light": "#000000",
+          "dark": "#FFFFFF"
+        },
+        "lineSpacing": 16
+      },
+      "contentTitleFont": {
+        "fontFamily": "sans-serif",
+        "fontSize": 14,
+        "fontWeight": "bold",
+        "fontColor": {
+          "light": "#000000",
+          "dark": "#FFFFFF"
+        },
+        "lineSpacing": 18
+      },
+      "contentDescriptionFont": {
+        "fontFamily": "sans-serif",
+        "fontSize": 12,
+        "fontWeight": "normal",
+        "fontColor": {
+          "light": "#373737",
+          "dark": "#C4C4C4"
+        },
+        "lineSpacing": 18
+      },
+      "link": {
+        "fontFamily": "sans-serif",
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "fontColor": {
+          "light": "#007AFF",
+          "dark": "#8DD0FF"
+        },
+        "lineSpacing": 16,
+        "textAllCaps": false
+      },
+      "primaryButton": {
+        "buttonTextFont": {
+          "fontFamily": "sans-serif",
+          "fontSize": 11,
+          "fontWeight": "normal",
+          "fontColor": {
+            "light": "#FFFFFF",
+            "dark": "#000000"
+          }
+        },
+        "buttonBackgroundColor": {
+          "light": "#000000",
+          "dark": "#FDF8E1"
+        },
+        "buttonBorderColor": {
+          "light": "#000000",
+          "dark": "#FDF8E1"
+        },
+        "buttonBorderRadius": 100,
+        "buttonBorderWidth": 1,
+        "buttonBorderShadow": {
+          "color": {
+            "light": "#fc3d39",
+            "dark": "#147efb"
+          },
+          "offset": {
+            "width": 15,
+            "height": 10
+          },
+          "opacity": 2,
+          "radius": 30,
+          "elevation": 1
         }
       }
     }
