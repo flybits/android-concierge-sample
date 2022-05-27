@@ -87,7 +87,7 @@ class ComplexRecyclerViewBannerAdapter(private val items: List<Any>, var context
         val transaction = (context as AppCompatActivity).supportFragmentManager.beginTransaction()
         com.flybits.concierge.Concierge.fragment(
             context,
-            Container.None,
+            Container.Expose,
             null,
             arrayListOf(
                 ConciergeOptions.Horizontal,
