@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.flybits.concierge.enums.ConciergeOptions
 import com.flybits.concierge.enums.Container
 import com.flybits.concierge.enums.ContentStyle
+import com.flybits.concierge.viewproviders.ButtonBannerViewProvider
+import com.flybits.concierge.viewproviders.LinkBannerViewProvider
 import com.flybits.conciergesample.R
 import com.flybits.conciergesample.modify_buttons_banner.*
 
@@ -49,7 +51,7 @@ class ComplexRecyclerViewModifyButtonsAdapter(private val items: List<Any>, var 
             }
             Savings -> {
                 val v2: View = inflater.inflate(R.layout.layout_viewholder3, viewGroup, false)
-                ViewHolderModifyBanners2(v2)
+                ViewHolderModifyBanners3(v2)
             }
             else -> {
                 val v2: View = inflater.inflate(R.layout.layout_viewholder2, viewGroup, false)
@@ -87,12 +89,15 @@ class ComplexRecyclerViewModifyButtonsAdapter(private val items: List<Any>, var 
 
     private fun configureViewHolder2(vh2: ViewHolderModifyBanners2, position: Int) {
         val transaction = (context as AppCompatActivity).supportFragmentManager.beginTransaction()
+
         com.flybits.concierge.Concierge.fragment(
             context,
             Container.Expose,
             null,
             arrayListOf(
-                ConciergeOptions.Style(ContentStyle.BANNER)
+                ConciergeOptions.Style(ContentStyle.BANNER), ConciergeOptions.CustomViewProviders(
+                    listOf(LinkBannerViewProvider(context, R.layout.modifed_link_viewable))
+                )
             )
         ).let {
             transaction.replace(vh2.frameLayout.id, it)
