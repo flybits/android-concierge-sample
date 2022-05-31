@@ -27,4 +27,15 @@
                 app:popUpToInclusive="true" />
     </fragment>
 
+    <fragment
+            android:id="@+id/modify_banners"
+            android:name="com.flybits.conciergesample.banners.FragmentForModifyBanners"
+            android:label="ModifyBanner">
+        <action
+                android:id="@+id/action_modify_banners_self"
+                app:destination="@id/modify_banners" />
+    </fragment>
+
+
+
 </navigation>
