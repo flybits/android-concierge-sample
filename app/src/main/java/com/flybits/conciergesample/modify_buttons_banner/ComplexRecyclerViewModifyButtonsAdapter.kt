@@ -96,7 +96,7 @@ class ComplexRecyclerViewModifyButtonsAdapter(private val items: List<Any>, var 
             null,
             arrayListOf(
                 ConciergeOptions.Style(ContentStyle.BANNER), ConciergeOptions.CustomViewProviders(
-                    listOf(LinkBannerViewProvider(context, R.layout.modifed_link_viewable))
+                    listOf(ButtonBannerViewProvider(context, R.layout.modifed_link_viewable))
                 )
             )
         ).let {
