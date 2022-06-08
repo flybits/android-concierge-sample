@@ -22,10 +22,13 @@
         <entry key="app/src/main/res/layout/activity_full_screen_concierge.xml" value="0.3458333333333333" />
         <entry key="app/src/main/res/layout/activity_fullscreen_concierge.xml" value="0.28072916666666664" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3458333333333333" />
+        <entry key="app/src/main/res/layout/activity_modify_existing_viewable_layout.xml" value="0.29635416666666664" />
+        <entry key="app/src/main/res/layout/custom_button_banner_viewprovider.xml" value="0.288500506585613" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.24547101449275363" />
         <entry key="app/src/main/res/layout/fullscreen_concierge.xml" value="0.29322916666666665" />
         <entry key="app/src/main/res/layout/layout_viewholder1.xml" value="0.1" />
         <entry key="app/src/main/res/layout/layout_viewholder2.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/modifed_link_viewable.xml" value="0.4167636786961583" />
         <entry key="app/src/main/res/menu/menu_options.xml" value="0.3026041666666667" />
       </map>
     </option>
