@@ -15,15 +15,14 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/flybits_banner_link_mediaView"
-            app:layout_constraintTop_toTopOf="parent"
-            >
+            app:layout_constraintTop_toTopOf="parent">
 
         <TextView
                 android:id="@+id/flybits_banner_link_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView"
-                android:padding="1dp"/>
+                android:padding="1dp"
+                android:text="TextView" />
 
         <TextView
                 android:id="@+id/flybits_banner_link_title"
@@ -37,12 +36,9 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="2"
+                android:padding="1dp"
                 android:text="TextView"
-                tools:text="Hello World"
-                android:padding="1dp"/>
-
-
-
+                tools:text="Hello World" />
 
 
     </LinearLayout>
@@ -52,8 +48,8 @@
             android:layout_width="@dimen/flybits_banner_width_image"
             android:layout_height="@dimen/flybits_banner_height_image"
             android:layout_marginTop="0dp"
-               app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

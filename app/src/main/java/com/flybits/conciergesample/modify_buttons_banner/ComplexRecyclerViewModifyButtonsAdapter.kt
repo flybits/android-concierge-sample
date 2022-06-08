@@ -1,6 +1,5 @@
 package com.flybits.conciergesample.modify_buttons_banner
 
-import com.flybits.conciergesample.banners.FragmentForModifyBanners
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -10,10 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.flybits.concierge.enums.ConciergeOptions
 import com.flybits.concierge.enums.Container
 import com.flybits.concierge.enums.ContentStyle
-import com.flybits.concierge.viewproviders.ButtonBannerViewProvider
 import com.flybits.concierge.viewproviders.LinkBannerViewProvider
 import com.flybits.conciergesample.R
-import com.flybits.conciergesample.modify_buttons_banner.*
+import com.flybits.conciergesample.banners.FragmentForModifyBanners
 
 class ComplexRecyclerViewModifyButtonsAdapter(private val items: List<Any>, var context: Context) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {

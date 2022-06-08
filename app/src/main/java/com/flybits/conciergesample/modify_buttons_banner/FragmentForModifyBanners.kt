@@ -19,7 +19,7 @@ import com.flybits.flybitscoreconcierge.idps.AnonymousConciergeIDP
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_account.*
 
-class FragmentForModifyBanners: Fragment() {
+class FragmentForModifyBanners : Fragment() {
     companion object {
         fun newInstance(): FragmentForBanners {
             return FragmentForBanners()
@@ -40,7 +40,8 @@ class FragmentForModifyBanners: Fragment() {
         setHasOptionsMenu(true)
 
         // Recycler view
-        val adapter = context?.let { ComplexRecyclerViewModifyButtonsAdapter(getSampleArrayList(), it) }
+        val adapter =
+            context?.let { ComplexRecyclerViewModifyButtonsAdapter(getSampleArrayList(), it) }
         rv_common_items.adapter = adapter
         rv_common_items.layoutManager = LinearLayoutManager(context)
     }
@@ -134,7 +135,7 @@ class FragmentForModifyBanners: Fragment() {
 
     private fun getSampleArrayList(): ArrayList<Any> {
         val items: ArrayList<Any> = ArrayList()
-        items.add(Savings("$4,000","$5,000","10,000"))
+        items.add(Savings("$4,000", "$5,000", "10,000"))
         items.add(Investments("RRSP", "$5000"))
         items.add(Investments("TFSA", "$10,000"))
         items.add("Concierge")
@@ -145,5 +146,9 @@ class FragmentForModifyBanners: Fragment() {
 
     data class Investments(val type: String, var amount: String)
 
-    data class Savings(val amount_cheq: String, var amount_savings: String, var amount_credit:String)
+    data class Savings(
+        val amount_cheq: String,
+        var amount_savings: String,
+        var amount_credit: String
+    )
 }
