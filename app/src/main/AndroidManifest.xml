@@ -16,7 +16,9 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
-            tools:ignore="GoogleAppIndexingWarning">
+            tools:ignore="GoogleAppIndexingWarning"
+            android:usesCleartextTraffic="true"
+            tools:targetApi="m">
         <activity
                 android:name=".activity.ModifyButtonBanner"
                 android:exported="true" >
@@ -56,6 +58,15 @@
         <activity
                 android:name=".activity.DemoAppCompatActivityActionBar"
                 android:theme="@style/AppTheme" />
+        <activity
+                android:name=".activity.FullScreenZones"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <service
                 android:name=".AppMessagingService"
