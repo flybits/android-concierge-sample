@@ -43,7 +43,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
     implementation 'androidx.work:work-runtime-ktx:2.7.1'
-    implementation 'com.flybits.android:concierge:5.0.0-rc6'
+    implementation 'com.flybits.android:concierge:5.0.0-rc7'
 }
 
 apply plugin: 'com.google.gms.google-services'
