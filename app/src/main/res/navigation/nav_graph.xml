@@ -36,6 +36,13 @@
                 app:destination="@id/modify_banners" />
     </fragment>
 
-
+    <fragment
+            android:id="@+id/fullscreen_zone_fragment"
+            android:name="com.flybits.conciergesample.zones_and_modules.FragmentForFullScreenZone"
+            android:label="Single Zone">
+        <action
+                android:id="@+id/action_modify_banners_self"
+                app:destination="@id/modify_banners" />
+    </fragment>
 
 </navigation>

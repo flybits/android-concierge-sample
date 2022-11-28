@@ -14,9 +14,9 @@ class DemoAppCompatActivityActionBar : AppCompatActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         intent?.let {
             if (it.hasExtra(ConciergeConstants.PUSH_EXTRA)) {
-                val push = Concierge.handlePush(it)
+                val push = Concierge.handlePush(this, it)
                 if (push != null) {
-                    Concierge.deepLink(push)?.let { fragment ->
+                    Concierge.deepLink(push, this)?.let { fragment ->
                         transaction.replace(R.id.fragment_container, fragment)
                     }
                 }
