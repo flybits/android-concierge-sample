@@ -2,7 +2,8 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/nav_graph"
-        app:startDestination="@+id/banners_fragment">
+        android:label="Custom View Provider"
+        app:startDestination="@id/custom_view_provider">
     <fragment
             android:id="@+id/expose_fragment"
             android:name="com.flybits.conciergesample.expose.FragmentForExpose"
@@ -35,7 +36,14 @@
                 android:id="@+id/action_modify_banners_self"
                 app:destination="@id/modify_banners" />
     </fragment>
-
+    <fragment
+            android:id="@+id/custom_view_provider"
+            android:name="com.flybits.conciergesample.custom_view_provider.FragmentForCustomViewProvider"
+            android:label="Custom View Provider">
+        <action
+                android:id="@+id/action_fragmentForCustomViewProvider_self"
+                app:destination="@id/custom_view_provider" />
+    </fragment>
 
 
 </navigation>
