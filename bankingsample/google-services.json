@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "146669699562",
+    "project_id": "flybits-td-us-sample",
+    "storage_bucket": "flybits-td-us-sample.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:146669699562:android:7dacba3935bfceb0413293",
+        "android_client_info": {
+          "package_name": "com.flybits.sample.tdus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "146669699562-osvb3nt95r3e7louehlblv8c3qjsqitd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDW8O5gWztKaFM8vUZta8gquJisk2Ui0jA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "146669699562-osvb3nt95r3e7louehlblv8c3qjsqitd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
