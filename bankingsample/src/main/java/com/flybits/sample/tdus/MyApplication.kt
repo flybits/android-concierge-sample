@@ -17,9 +17,9 @@ class MyApplication: Application() {
         createNotificationChannel()
 
         val config = FlybitsConciergeConfiguration.Builder(applicationContext)
+            .setProjectId("08A0D8CA-2173-4756-B70C-96A0984D8C68")
             .setGatewayUrl("https://api.demo.flybits.com")
-            .setProjectId("696DF9A2-8B20-4D46-9908-A6615C27B656")
-            .setWebService("https://fb-mobile-apps.s3.amazonaws.com/public")
+            .setWebService("https://static-files-concierge.development.flybits.com/latest")
             .build()
 
         Concierge.setLoggingVerbosity(VerbosityLevel.ALL)
