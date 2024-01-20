@@ -96,7 +96,7 @@ class FragmentForModifyBanners : Fragment() {
             // Check if connected already.
             if (!Concierge.isConnected(requireContext())) {
                 // Call Connect and load the fragment.
-                Concierge.connect(requireContext(), AnonymousConciergeIDP())
+//                Concierge.connect(requireContext(), AnonymousConciergeIDP())
                 rv_common_items.adapter?.notifyDataSetChanged()
             } else {
                 Concierge.disconnect(requireContext(), object : BasicResultCallback {
