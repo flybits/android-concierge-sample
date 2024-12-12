@@ -8,7 +8,6 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.flybits.android.push.models.newPush.Push
 import com.flybits.android.push.services.EXTRA_PUSH_NOTIFICATION
-import com.flybits.concierge.ConciergeConstants
 import com.flybits.conciergesample.R
 
 class ExposeConcierge : AppCompatActivity() {
@@ -38,7 +37,7 @@ class ExposeConcierge : AppCompatActivity() {
                 val extra = it.getParcelableExtra<Push>(EXTRA_PUSH_NOTIFICATION)
                 val intentActivity = Intent(this, DemoAppCompatActivityActionBar::class.java)
                 intentActivity.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                intentActivity.putExtra(ConciergeConstants.PUSH_EXTRA, extra)
+                intentActivity.putExtra(EXTRA_PUSH_NOTIFICATION, extra)
                 startActivity(intentActivity)
             }
         }

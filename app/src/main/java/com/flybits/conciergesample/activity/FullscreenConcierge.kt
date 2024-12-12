@@ -43,7 +43,17 @@ class FullscreenConcierge : AppCompatActivity() {
             // Check if connected already.
             if (!Concierge.isConnected(this)) {
                 // Call Connect and load the fragment.
-                Concierge.connect(this, AnonymousConciergeIDP())
+                Concierge.connect(
+                    this,
+                    idp = AnonymousConciergeIDP(),
+                    basicResultCallback = object : BasicResultCallback {
+                        override fun onException(exception: FlybitsException) {
+
+                        }
+
+                        override fun onSuccess() {
+                        }
+                    })
             } else {
                 Concierge.disconnect(this, object : BasicResultCallback {
                     override fun onException(exception: FlybitsException) {}

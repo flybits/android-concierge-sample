@@ -21,7 +21,7 @@ class GlobalApplication : Application() {
         createNotificationChannel()
 
         val config = FlybitsConciergeConfiguration.Builder(applicationContext)
-            .setGateWayUrl("https://api.demo.flybits.com")
+            .setGatewayUrl("https://api.demo.flybits.com")
             .setProjectId("2CE41988-B1D3-4116-98DD-42FFB8754384")
             .build()
 
