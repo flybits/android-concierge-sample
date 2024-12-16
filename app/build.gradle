@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'com.huawei.agconnect'
+
 android {
     compileSdk 34
     defaultConfig {
@@ -46,6 +48,9 @@ dependencies {
     implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
     implementation 'androidx.work:work-runtime-ktx:2.7.1'
 
+    // Huawei dependency
+    implementation "com.huawei.agconnect:agconnect-core:1.5.2.300"
+    implementation "com.huawei.hms:push:6.11.0.300"
 }
 
 apply plugin: 'com.google.gms.google-services'
