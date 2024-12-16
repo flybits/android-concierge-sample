@@ -6,6 +6,9 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.os.Build
 import com.facebook.stetho.Stetho
+import com.flybits.android.huaweiPush.provider.HuaweiDeliveryProvider
+import com.flybits.android.push.models.newPush.HUAWEI_PUSH_PROVIDER
+import com.flybits.android.push.provider.FcmV2DeliveryProvider
 import com.flybits.commons.library.logging.VerbosityLevel
 import com.flybits.concierge.Concierge
 import com.flybits.concierge.FlybitsConciergeConfiguration
@@ -23,13 +26,26 @@ class GlobalApplication : Application() {
         val config = FlybitsConciergeConfiguration.Builder(applicationContext)
             .setGatewayUrl("https://api.demo.flybits.com")
             .setProjectId("2CE41988-B1D3-4116-98DD-42FFB8754384")
+            .setPushProvider(FcmV2DeliveryProvider)
+            // TO use Huawei Push Kit as a provider set push provider to HuaweiDeliveryProvider instead.
+//            .setPushProvider(HuaweiDeliveryProvider)
             .build()
 
 
         Concierge.setLoggingVerbosity(VerbosityLevel.ALL)
 
-        //Call configure on Concierge
-        Concierge.configure(config, emptyList(),applicationContext)
+        // Call configure on Concierge
+        Concierge.configure(
+            config,
+            arrayListOf(
+                ContextManager.PluginType.ReservedPlugin(ReservedContextPlugin.HUAWEI_LOCATION),
+                ContextManager.PluginType.ReservedPlugin(ReservedContextPlugin.HUAWEI_GEOFENCE_LOCATION)
+                // To add or use plugins designed for Google Location and Geofence use the below code:
+//                ContextManager.PluginType.ReservedPlugin(ReservedContextPlugin.LOCATION),
+//                ContextManager.PluginType.ReservedPlugin(ReservedContextPlugin.GEOFENCE_LOCATION)
+            ),
+            applicationContext
+        )
     }
 
     private fun createNotificationChannel(

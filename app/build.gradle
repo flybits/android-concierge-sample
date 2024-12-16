@@ -49,8 +49,8 @@ dependencies {
     implementation 'androidx.work:work-runtime-ktx:2.7.1'
 
     // Huawei dependency
-    implementation "com.huawei.agconnect:agconnect-core:1.5.2.300"
-    implementation "com.huawei.hms:push:6.11.0.300"
+    implementation "com.flybits.android:huawei-push:5.1.4"
+    implementation "com.flybits.android:huawei-location:5.1.4"
 }
 
 apply plugin: 'com.google.gms.google-services'
