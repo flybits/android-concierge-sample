@@ -10,6 +10,7 @@ import com.flybits.concierge.Concierge
 import com.flybits.concierge.enums.Container
 import com.flybits.conciergesample.R
 import com.flybits.flybitscoreconcierge.idps.AnonymousConciergeIDP
+import com.flybits.flybitscoreconcierge.idps.OpenIDConnectConciergeIDP
 
 
 class FullscreenConcierge : AppCompatActivity() {
@@ -46,6 +47,8 @@ class FullscreenConcierge : AppCompatActivity() {
                 Concierge.connect(
                     this,
                     idp = AnonymousConciergeIDP(),
+                    // Use the OpenID Connect (OIDC) IDP if required.
+//                    idp = OpenIDConnectConciergeIDP("Your ID Token here"),
                     basicResultCallback = object : BasicResultCallback {
                         override fun onException(exception: FlybitsException) {
 

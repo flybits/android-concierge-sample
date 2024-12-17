@@ -9,7 +9,7 @@ import com.flybits.conciergesample.R
 class PushHandleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_demo_appcompat_activity)
+        setContentView(R.layout.activity_push_handle)
 
         val transaction = supportFragmentManager.beginTransaction()
         intent?.let {

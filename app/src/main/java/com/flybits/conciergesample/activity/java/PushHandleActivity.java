@@ -20,7 +20,7 @@ public class PushHandleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_demo_appcompat_activity);
+        setContentView(R.layout.activity_push_handle);
 
         final FragmentManager supportFragmentManager = getSupportFragmentManager();
         final FragmentTransaction transaction = supportFragmentManager.beginTransaction();

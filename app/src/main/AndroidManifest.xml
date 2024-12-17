@@ -74,6 +74,27 @@
         <activity
                 android:name=".activity.PushHandleActivity"
                 android:theme="@style/AppTheme" />
+        <activity
+                android:name=".activity.java.PushHandleActivity"
+                android:theme="@style/AppTheme" />
+        <activity
+                android:name=".activity.ZonesModulesConcierge"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+                android:name=".activity.java.ZonesModulesConcierge"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <service
                 android:name=".AppMessagingService"
