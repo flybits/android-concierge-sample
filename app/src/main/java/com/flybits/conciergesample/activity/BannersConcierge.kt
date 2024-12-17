@@ -36,7 +36,7 @@ class BannersConcierge : AppCompatActivity() {
         intent?.let {
             if (it.hasExtra(EXTRA_PUSH_NOTIFICATION)) {
                 val extra = it.getParcelableExtra<Push>(EXTRA_PUSH_NOTIFICATION)
-                val intentActivity = Intent(this, DemoAppCompatActivityActionBar::class.java)
+                val intentActivity = Intent(this, PushHandleActivity::class.java)
                 intentActivity.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 intentActivity.putExtra(EXTRA_PUSH_NOTIFICATION, extra)
                 startActivity(intentActivity)

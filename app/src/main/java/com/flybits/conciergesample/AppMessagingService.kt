@@ -20,4 +20,7 @@ class AppMessagingService : ConciergeMessagingService(true) {
         //handle non flybits push here
     }
 
+    override fun onNewToken(recentToken: String) {
+        super.onNewToken(recentToken)
+    }
 }

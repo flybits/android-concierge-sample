@@ -45,6 +45,15 @@
             </intent-filter>
         </activity>
         <activity
+                android:name=".activity.java.FullscreenConcierge"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
                 android:name=".activity.ExposeConcierge"
                 android:exported="true">
             <intent-filter>
@@ -54,7 +63,16 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".activity.DemoAppCompatActivityActionBar"
+                android:name=".activity.java.ExposeConcierge"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+                android:name=".activity.PushHandleActivity"
                 android:theme="@style/AppTheme" />
 
         <service
