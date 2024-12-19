@@ -31,3 +31,10 @@ The purpose of this application is to demonstrate how the Flybits Concierge SDK 
 3. In the Launch dropdown select Specified Activity
 4. In the Activity menu select the Activity desired for launch and click OK
 5. Locate Run button at the bottom anc click it
+
+## For Opening push notifications from system trey.
+1. In order to open the correct launcher Activity on click of push notification from system trey, developer needs to comment out all
+intent filters defined for launcher in AndroidManifest.xml.
+2. Only keep the intent filter launcher for the activity targeting to run the application.
+3. This will ensure, when the push notification is clicked only the targeted activity gets launched and push's pending intent is handled correctly.
+4. Once push notification click is tested, undo the changes made in step 1.

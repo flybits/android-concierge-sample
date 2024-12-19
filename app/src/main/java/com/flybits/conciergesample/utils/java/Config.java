@@ -26,6 +26,7 @@ public class Config {
                 .setProjectId("2CE41988-B1D3-4116-98DD-42FFB8754384")
                 .setWebService("https://static-files-concierge.development.flybits.com/latest")
                 .setPushProvider(FcmV2DeliveryProvider.INSTANCE)
+                .setUploadPushtokenOnConnect(true)
                 .build();
 
         Concierge.INSTANCE.setLoggingVerbosity(VerbosityLevel.ALL);

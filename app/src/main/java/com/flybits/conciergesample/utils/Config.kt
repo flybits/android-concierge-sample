@@ -19,6 +19,7 @@ internal fun configureConcierge(context: Context){
         .setProjectId("2CE41988-B1D3-4116-98DD-42FFB8754384")
         .setWebService("https://static-files-concierge.development.flybits.com/latest")
         .setPushProvider(FcmV2DeliveryProvider)
+        .setUploadPushtokenOnConnect(true)
         // TO use Huawei Push Kit as a provider set push provider to HuaweiDeliveryProvider instead.
 //            .setPushProvider(HuaweiDeliveryProvider)
         .build()

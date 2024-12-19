@@ -13,6 +13,8 @@ import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.flybits.android.push.models.newPush.Push
+import com.flybits.android.push.services.EXTRA_PUSH_NOTIFICATION
 import com.flybits.commons.library.api.results.callbacks.BasicResultCallback
 import com.flybits.commons.library.exceptions.FlybitsException
 import com.flybits.commons.library.logging.VerbosityLevel
@@ -38,6 +40,7 @@ class ZonesModulesConcierge: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_zones_modules)
+        handlePushIntent(intent)
 
         Concierge.setLoggingVerbosity(VerbosityLevel.ALL)
 
@@ -158,6 +161,31 @@ class ZonesModulesConcierge: AppCompatActivity() {
                 transaction.replace(R.id.fragment_container, it)
             }
             transaction.commit()
+        }
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        handlePushIntent(intent)
+    }
+
+    private fun handlePushIntent(intent: Intent?) {
+        intent?.let {
+            if (it.hasExtra(EXTRA_PUSH_NOTIFICATION)) {
+                // Example of passing Intent that has Flybits Push for handling with Concierge.handlePush() API in the DemoAppCompatActivityActionBar
+                @Suppress("DEPRECATION") val push: Push? =
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                        it.getParcelableExtra(EXTRA_PUSH_NOTIFICATION, Push::class.java)
+                    } else {
+                        it.getParcelableExtra(EXTRA_PUSH_NOTIFICATION)
+                    }
+                val intentActivity = Intent(this, PushHandleActivity::class.java)
+                intentActivity.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                intentActivity.putExtra(EXTRA_PUSH_NOTIFICATION, push)
+                startActivity(intentActivity)
+            } else {
+                // Since Intent does not have Flybits Push the RemoteMessage should be extracted before passing it to the Concierge.handle() API.
+            }
         }
     }
 

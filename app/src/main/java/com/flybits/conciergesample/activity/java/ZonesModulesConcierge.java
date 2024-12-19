@@ -1,5 +1,6 @@
 package com.flybits.conciergesample.activity.java;
 
+import static com.flybits.android.push.services.PushServiceKt.EXTRA_PUSH_NOTIFICATION;
 import static com.flybits.concierge.ConciergeConstants.BROADCAST_CONCIERGE_EVENT;
 
 import android.content.BroadcastReceiver;
@@ -22,6 +23,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.flybits.android.push.models.newPush.Push;
 import com.flybits.commons.library.api.results.callbacks.BasicResultCallback;
 import com.flybits.commons.library.exceptions.FlybitsException;
 import com.flybits.commons.library.logging.VerbosityLevel;
@@ -34,6 +36,7 @@ import com.flybits.concierge.enums.ConciergeParams;
 import com.flybits.concierge.enums.Container;
 import com.flybits.concierge.models.ZonesConfig;
 import com.flybits.conciergesample.R;
+import com.flybits.conciergesample.activity.PushHandleActivity;
 import com.flybits.flybitscoreconcierge.idps.AnonymousConciergeIDP;
 import com.flybits.internal.db.CommonsDatabase;
 
@@ -50,6 +53,8 @@ public class ZonesModulesConcierge extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zones_modules);
+
+        handlePushIntent(getIntent());
 
         Concierge.INSTANCE.setLoggingVerbosity(VerbosityLevel.ALL);
 
@@ -198,13 +203,39 @@ public class ZonesModulesConcierge extends AppCompatActivity {
             transaction.replace(R.id.fragment_container, Concierge.INSTANCE.fragment(getApplicationContext(),
                     Container.Configured.INSTANCE,
                     new ArrayList<ConciergeParams>() {{
-                        add(new ConciergeParams.RequestEvents());
                         add(new ConciergeParams.ZonesFilter(zonesConfig));
                     }},
                     optionsList));
             transaction.commit();
         }
     }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        handlePushIntent(intent);
+    }
+
+    private void handlePushIntent(@Nullable Intent intent) {
+        if (intent != null) {
+            if (intent.hasExtra(EXTRA_PUSH_NOTIFICATION)) {
+                // Example of passing Intent that has Flybits Push for handling with Concierge.handlePush() API in the DemoAppCompatActivityActionBar
+                final Push push;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    push = intent.getParcelableExtra(EXTRA_PUSH_NOTIFICATION, Push.class);
+                } else {
+                    push = intent.getParcelableExtra(EXTRA_PUSH_NOTIFICATION);
+                }
+                Intent intentActivity = new Intent(this, PushHandleActivity.class);
+                intentActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intentActivity.putExtra(EXTRA_PUSH_NOTIFICATION, push);
+                startActivity(intentActivity);
+            } else {
+                // Since Intent does not have Flybits Push the RemoteMessage should be extracted before passing it to the Concierge.handle() API.
+            }
+        }
+    }
+
 
     @Override
     protected void onDestroy() {
