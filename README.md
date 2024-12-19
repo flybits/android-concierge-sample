@@ -32,6 +32,33 @@ The purpose of this application is to demonstrate how the Flybits Concierge SDK 
 4. In the Activity menu select the Activity desired for launch and click OK
 5. Locate Run button at the bottom anc click it
 
+## Configure using JSON instead of FlybitsConciergeConfiguration.Builder
+1. Flybits Concierge provides alternative way of configuring using config() API with JSON format.
+2. For that, just create a JSON named `ConciergeConfiguration.json` under **_application's assets folder_**, as below structure
+3. ```json
+    {
+      "conciergeConfiguration": {
+        "projectConfiguration": {
+          "projectId": "project_id",
+          "gatewayUrl": "gateway_url",
+          "pushProvider": "fcm or huawei" 
+        },
+        "settingsConfiguration": {
+          "tncUrl": "tnc_url",
+          "privacyUrl": "privacy_url",
+          "showOptOut": true
+        },
+        "webService": "webservice_url",
+        "configuredContainerDefaultHeight": 300,
+        "uploadPushTokenOnConnect": true, 
+        "webViewPoolingSize": 0
+      }
+    }
+    ```
+4. All values in above json have corresponding values to `FlybitsConciergeConfiguration.Builder`, make sure the above json is ready with expected values.
+5. On compiling the application and running it, the `configure()` API will now **ONLY** utilize the values from the `ConciergeConfiguration.json` file and ignore the `FlybitsConciergeConfiguration.Builder`.
+6. In order to use the `FlybitsConciergeConfiguration.Builder` values again for configuring, either rename the `ConciergeConfiguration.json` or remove it completely.
+
 ## For Opening push notifications from system trey.
 1. In order to open the correct launcher Activity on click of push notification from system trey, developer needs to comment out all
 intent filters defined for launcher in AndroidManifest.xml.
