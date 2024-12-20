@@ -60,8 +60,8 @@ The purpose of this application is to demonstrate how the Flybits Concierge SDK 
 
 ## Run Configuration setup in AndroidManifest
 1. Open `app/src/main/AndroidManifest.xml`
-2. Leave the `<intent-filter>` uncommented only for the `<ctivity>` that you wish to launch
-3. In all other `<ctivity>`s comment out or delete the `<intent-filter>`
+2. Leave the `<intent-filter>` uncommented only for the `<activity>` that you wish to launch
+3. In all other `<activity>`s comment out or delete the `<intent-filter>`
 
 ## Dealing with push notifications
 1. Make sure that you edit the run configuration with the Run Configuration setup in AndroidManifest steps
