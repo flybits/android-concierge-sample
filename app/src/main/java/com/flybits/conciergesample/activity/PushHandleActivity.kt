@@ -6,10 +6,10 @@ import com.flybits.android.push.services.EXTRA_PUSH_NOTIFICATION
 import com.flybits.concierge.Concierge
 import com.flybits.conciergesample.R
 
-class DemoAppCompatActivityActionBar : AppCompatActivity() {
+class PushHandleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_demo_appcompat_activity)
+        setContentView(R.layout.activity_push_handle)
 
         val transaction = supportFragmentManager.beginTransaction()
         intent?.let {
