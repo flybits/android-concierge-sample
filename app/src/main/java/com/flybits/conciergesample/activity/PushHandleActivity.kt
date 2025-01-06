@@ -2,18 +2,18 @@ package com.flybits.conciergesample.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.flybits.android.push.services.EXTRA_PUSH_NOTIFICATION
 import com.flybits.concierge.Concierge
-import com.flybits.concierge.ConciergeConstants
 import com.flybits.conciergesample.R
 
-class DemoAppCompatActivityActionBar : AppCompatActivity() {
+class PushHandleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_demo_appcompat_activity)
+        setContentView(R.layout.activity_push_handle)
 
         val transaction = supportFragmentManager.beginTransaction()
         intent?.let {
-            if (it.hasExtra(ConciergeConstants.PUSH_EXTRA)) {
+            if (it.hasExtra(EXTRA_PUSH_NOTIFICATION)) {
                 val push = Concierge.handlePush(this, it)
                 if (push != null) {
                     Concierge.deepLink(push, this)?.let { fragment ->

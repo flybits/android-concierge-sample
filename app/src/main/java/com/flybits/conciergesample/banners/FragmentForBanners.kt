@@ -4,7 +4,12 @@ import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.app.Activity
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -16,7 +21,8 @@ import com.flybits.concierge.Concierge
 import com.flybits.conciergesample.R
 import com.flybits.flybitscoreconcierge.idps.AnonymousConciergeIDP
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_account.*
+import kotlinx.android.synthetic.main.fragment_account.progressBar
+import kotlinx.android.synthetic.main.fragment_account.rv_common_items
 
 
 const val LOCATION_PERMISSION_REQUEST = 123
@@ -101,7 +107,17 @@ class FragmentForBanners : Fragment() {
             // Check if connected already.
             if (!Concierge.isConnected(requireContext())) {
                 // Call Connect and load the fragment.
-                Concierge.connect(requireContext(), AnonymousConciergeIDP())
+                Concierge.connect(
+                    requireContext(),
+                    AnonymousConciergeIDP(),
+                    basicResultCallback = object : BasicResultCallback {
+                        override fun onException(exception: FlybitsException) {
+
+                        }
+
+                        override fun onSuccess() {
+                        }
+                    })
                 rv_common_items.adapter?.notifyDataSetChanged()
             } else {
                 Concierge.disconnect(requireContext(), object : BasicResultCallback {
@@ -140,7 +156,7 @@ class FragmentForBanners : Fragment() {
 
     private fun getSampleArrayList(): ArrayList<Any> {
         val items: ArrayList<Any> = ArrayList()
-        items.add(Savings("$4,000","$5,000","10,000"))
+        items.add(Savings("$4,000", "$5,000", "10,000"))
         items.add(Investments("RRSP", "$5000"))
         items.add(Investments("TFSA", "$10,000"))
         items.add("Concierge")
@@ -151,5 +167,9 @@ class FragmentForBanners : Fragment() {
 
     data class Investments(val type: String, var amount: String)
 
-    data class Savings(val amount_cheq: String, var amount_savings: String, var amount_credit:String)
+    data class Savings(
+        val amount_cheq: String,
+        var amount_savings: String,
+        var amount_credit: String
+    )
 }

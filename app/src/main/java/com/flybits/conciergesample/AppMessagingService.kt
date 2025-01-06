@@ -12,7 +12,7 @@ class AppMessagingService : ConciergeMessagingService(true) {
     }
 
     override fun getNotificationIconRes(push: DisplayablePush): Int {
-        return R.drawable.ic_flybits_logo_opt_in
+        return android.R.drawable.ic_btn_speak_now
     }
 
 
@@ -20,4 +20,7 @@ class AppMessagingService : ConciergeMessagingService(true) {
         //handle non flybits push here
     }
 
+    override fun onNewToken(recentToken: String) {
+        super.onNewToken(recentToken)
+    }
 }

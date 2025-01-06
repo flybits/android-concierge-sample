@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <Button
+            android:id="@+id/connect_disconnect"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Connect/Disconnect" />
+
+    <Button
+            android:id="@+id/optin_optout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="OptIn/OptOut" />
+
+    <Button
+            android:id="@+id/call_handleActionableLink"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Call handleActionableLink" />
+
+    <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+</LinearLayout>
