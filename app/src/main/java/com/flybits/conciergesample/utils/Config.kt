@@ -39,7 +39,7 @@ internal fun configureConcierge(context: Context){
         ),
         // Adding the instance of DeepLinkHandler to array list in order to pass it
         // to configure() API.
-        deepLinkHandlers = arrayListOf(SettingsActivityHandler()),
+        deepLinkHandlers = arrayListOf(CustomScreenDeepLinkHandler()),
         context = context
     )
 }

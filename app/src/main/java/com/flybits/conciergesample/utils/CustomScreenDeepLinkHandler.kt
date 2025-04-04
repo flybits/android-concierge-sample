@@ -9,7 +9,7 @@ import com.flybits.flybitscoreconcierge.actiontypes.DeepLinkHandler
  * Kotlin Implementation of DeepLinkHandler to specify the activity to display when app://? actionable
  * link is clicked.
  */
-class SettingsActivityHandler : DeepLinkHandler {
+class CustomScreenDeepLinkHandler : DeepLinkHandler {
 
     /**
      * @return the identifier which uniquely identifies the activity to be opened

@@ -12,7 +12,7 @@ import com.flybits.flybitscoreconcierge.actiontypes.DeepLinkHandler;
  * Java Implementation of DeepLinkHandler to specify the activity to display when app://? actionable
  * link is clicked.
  */
-public class SettingsActivityHandler implements DeepLinkHandler {
+public class CustomScreenDeepLinkHandler implements DeepLinkHandler {
 
     /**
      * @return the identifier which uniquely identifies the activity to be opened

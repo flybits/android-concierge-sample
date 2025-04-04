@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.flybits.android.push.provider.FcmV2DeliveryProvider;
-import com.flybits.android.push.provider.PushProvider;
 import com.flybits.commons.library.logging.VerbosityLevel;
 import com.flybits.concierge.Concierge;
 import com.flybits.concierge.FlybitsConciergeConfiguration;
@@ -35,7 +34,7 @@ public class Config {
         // Adding the instance of DeepLinkHandler to array list in order to pass it
         // to configure() API.
         ArrayList<DeepLinkHandler> deepLinkHandlers = new ArrayList<>();
-        deepLinkHandlers.add(new SettingsActivityHandler());
+        deepLinkHandlers.add(new CustomScreenDeepLinkHandler());
 
         // Call configure on Concierge
         Concierge.INSTANCE.configure(
