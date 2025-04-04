@@ -34,7 +34,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ZonesModulesConcierge: AppCompatActivity() {
+class ZonesModulesConcierge : AppCompatActivity() {
     private var broadcastReceiver: BroadcastReceiver? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,9 +64,11 @@ class ZonesModulesConcierge: AppCompatActivity() {
                     basicResultCallback = object : BasicResultCallback {
                         override fun onSuccess() {
                         }
+
                         override fun onException(exception: FlybitsException) {
                         }
-                    }, fetchConfiguration = true)
+                    }, fetchConfiguration = true
+                )
             }
         }
 
@@ -80,6 +82,7 @@ class ZonesModulesConcierge: AppCompatActivity() {
                             Concierge.optOut(applicationContext, object : BasicResultCallback {
                                 override fun onSuccess() {
                                 }
+
                                 override fun onException(exception: FlybitsException) {
                                 }
                             })
@@ -87,6 +90,7 @@ class ZonesModulesConcierge: AppCompatActivity() {
                             Concierge.optIn(applicationContext, object : BasicResultCallback {
                                 override fun onSuccess() {
                                 }
+
                                 override fun onException(exception: FlybitsException) {
                                 }
                             })
@@ -94,13 +98,13 @@ class ZonesModulesConcierge: AppCompatActivity() {
                     }
                 }
             } else {
-               // Concierge not connected.
+                // Concierge not connected.
             }
         }
 
         call_handleActionableLink.setOnClickListener {
             val transaction = supportFragmentManager.beginTransaction()
-            Concierge.handleActionableLink(this, Uri.parse("details://?contentId=D68B465C-34B5-41E9-877C-5813CA040C62"))
+            Concierge.handleActionableLink(this, Uri.parse("app://?name=id1"))
                 ?.let { fragment ->
                     transaction.replace(R.id.fragment_container, fragment)
                     transaction.commit()
@@ -121,16 +125,17 @@ class ZonesModulesConcierge: AppCompatActivity() {
 
                 // Example of handling actionable link
                 actionableLink?.let {
-                    Concierge.handleActionableLink(this@ZonesModulesConcierge,
+                    Concierge.handleActionableLink(
+                        this@ZonesModulesConcierge,
                         Uri.parse(actionableLink),
                         conciergeOptions = arrayListOf(),
                         requestEvents = ConciergeParams.RequestEvents(),
                     )?.let { fragment ->
-                            transaction.add(R.id.fragment_container, fragment)
-                            transaction.addToBackStack(null)
-                            transaction.commit()
+                        transaction.add(R.id.fragment_container, fragment)
+                        transaction.addToBackStack(null)
+                        transaction.commit()
                     } ?: run {
-                       // Returned null
+                        // Returned null
                     }
                 }
             }
@@ -139,7 +144,12 @@ class ZonesModulesConcierge: AppCompatActivity() {
         intentFilter.addAction(BROADCAST_CONCIERGE_EVENT)
         @SuppressLint("WrongConstant")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            ContextCompat.registerReceiver(this, broadcastReceiver, intentFilter, ContextCompat.RECEIVER_NOT_EXPORTED)
+            ContextCompat.registerReceiver(
+                this,
+                broadcastReceiver,
+                intentFilter,
+                ContextCompat.RECEIVER_NOT_EXPORTED
+            )
         } else {
             LocalBroadcastManager.getInstance(this)
                 .registerReceiver(broadcastReceiver as BroadcastReceiver, intentFilter)
@@ -153,9 +163,10 @@ class ZonesModulesConcierge: AppCompatActivity() {
         )
         if (savedInstanceState == null) {
             val transaction = supportFragmentManager.beginTransaction()
-            Concierge.fragment(applicationContext,
+            Concierge.fragment(
+                applicationContext,
                 Container.Configured,
-                arrayListOf(ConciergeParams.RequestEvents(), ConciergeParams.ZonesFilter(zonesConfig)),
+                arrayListOf(ConciergeParams.ZonesFilter(zonesConfig)),
                 optionsList
             ).let {
                 transaction.replace(R.id.fragment_container, it)

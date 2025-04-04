@@ -17,7 +17,7 @@ internal fun configureConcierge(context: Context){
     val config = FlybitsConciergeConfiguration.Builder(context)
         .setGatewayUrl("https://api.demo.flybits.com")
         .setProjectId("2CE41988-B1D3-4116-98DD-42FFB8754384")
-        .setWebService("https://static-files-concierge.development.flybits.com/latest")
+        .setWebService("https://static-files-concierge.demo.flybits.com/latest")
         .setPushProvider(FcmV2DeliveryProvider)
         .setUploadPushtokenOnConnect(true)
         // TO use Huawei Push Kit as a provider set push provider to HuaweiDeliveryProvider instead.
@@ -37,7 +37,10 @@ internal fun configureConcierge(context: Context){
 //                ContextManager.PluginType.ReservedPlugin(ReservedContextPlugin.LOCATION),
 //                ContextManager.PluginType.ReservedPlugin(ReservedContextPlugin.GEOFENCE_LOCATION)
         ),
-        context
+        // Adding the instance of DeepLinkHandler to array list in order to pass it
+        // to configure() API.
+        deepLinkHandlers = arrayListOf(SettingsActivityHandler()),
+        context = context
     )
 }
 

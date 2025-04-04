@@ -15,6 +15,7 @@ import com.flybits.concierge.Concierge;
 import com.flybits.concierge.FlybitsConciergeConfiguration;
 import com.flybits.context.ContextManager;
 import com.flybits.context.ReservedContextPlugin;
+import com.flybits.flybitscoreconcierge.actiontypes.DeepLinkHandler;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,6 +32,11 @@ public class Config {
 
         Concierge.INSTANCE.setLoggingVerbosity(VerbosityLevel.ALL);
 
+        // Adding the instance of DeepLinkHandler to array list in order to pass it
+        // to configure() API.
+        ArrayList<DeepLinkHandler> deepLinkHandlers = new ArrayList<>();
+        deepLinkHandlers.add(new SettingsActivityHandler());
+
         // Call configure on Concierge
         Concierge.INSTANCE.configure(
                 config,
@@ -42,7 +48,7 @@ public class Config {
 //                        new ContextManager.PluginType.ReservedPlugin(ReservedContextPlugin.GEOFENCE_LOCATION)
                 ),
                 context,
-                null,
+                deepLinkHandlers,
                 null
         );
     }
