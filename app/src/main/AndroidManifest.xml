@@ -19,12 +19,12 @@
             tools:ignore="GoogleAppIndexingWarning">
         <activity
                 android:name=".activity.ModifyButtonBanner"
-                android:exported="true" >
-                <intent-filter>
-                    <action android:name="android.intent.action.MAIN" />
+                android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-                    <category android:name="android.intent.category.LAUNCHER" />
-                </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
                 android:name=".activity.BannersConcierge"
@@ -96,6 +96,10 @@
             </intent-filter>
         </activity>
 
+        <activity
+                android:name=".activity.CustomSettingsActivity"
+                android:exported="true"></activity>
+
         <service
                 android:name=".AppMessagingService"
                 android:exported="false">
@@ -103,7 +107,6 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
         <service
                 android:name=".HuaweiMessage"
                 android:exported="false">

@@ -9,12 +9,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.flybits.android.push.provider.FcmV2DeliveryProvider;
-import com.flybits.android.push.provider.PushProvider;
 import com.flybits.commons.library.logging.VerbosityLevel;
 import com.flybits.concierge.Concierge;
 import com.flybits.concierge.FlybitsConciergeConfiguration;
 import com.flybits.context.ContextManager;
 import com.flybits.context.ReservedContextPlugin;
+import com.flybits.flybitscoreconcierge.actiontypes.DeepLinkHandler;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,12 +24,17 @@ public class Config {
         final FlybitsConciergeConfiguration config = new FlybitsConciergeConfiguration.Builder(context)
                 .setGatewayUrl("https://api.demo.flybits.com")
                 .setProjectId("2CE41988-B1D3-4116-98DD-42FFB8754384")
-                .setWebService("https://static-files-concierge.development.flybits.com/latest")
+                .setWebService("https://static-files-concierge.demo.flybits.com/latest")
                 .setPushProvider(FcmV2DeliveryProvider.INSTANCE)
                 .setUploadPushtokenOnConnect(true)
                 .build();
 
         Concierge.INSTANCE.setLoggingVerbosity(VerbosityLevel.ALL);
+
+        // Adding the instance of DeepLinkHandler to array list in order to pass it
+        // to configure() API.
+        ArrayList<DeepLinkHandler> deepLinkHandlers = new ArrayList<>();
+        deepLinkHandlers.add(new CustomScreenDeepLinkHandler());
 
         // Call configure on Concierge
         Concierge.INSTANCE.configure(
@@ -42,7 +47,7 @@ public class Config {
 //                        new ContextManager.PluginType.ReservedPlugin(ReservedContextPlugin.GEOFENCE_LOCATION)
                 ),
                 context,
-                null,
+                deepLinkHandlers,
                 null
         );
     }
