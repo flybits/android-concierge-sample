@@ -25,7 +25,7 @@ public class Config {
         final FlybitsConciergeConfiguration config = new FlybitsConciergeConfiguration.Builder(context)
                 .setGatewayUrl("https://api.demo.flybits.com")
                 .setProjectId("2CE41988-B1D3-4116-98DD-42FFB8754384")
-                .setWebService("https://static-files-concierge.development.flybits.com/latest")
+                .setWebService("https://static-files-concierge.demo.flybits.com/latest")
                 .setPushProvider(FcmV2DeliveryProvider.INSTANCE)
                 .setUploadPushtokenOnConnect(true)
                 .build();
