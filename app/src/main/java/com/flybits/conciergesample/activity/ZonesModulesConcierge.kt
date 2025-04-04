@@ -104,7 +104,7 @@ class ZonesModulesConcierge : AppCompatActivity() {
 
         call_handleActionableLink.setOnClickListener {
             val transaction = supportFragmentManager.beginTransaction()
-            Concierge.handleActionableLink(this, Uri.parse("app://?name=id1"))
+            Concierge.handleActionableLink(this, Uri.parse("details://?contentId=D68B465C-34B5-41E9-877C-5813CA040C62"))
                 ?.let { fragment ->
                     transaction.replace(R.id.fragment_container, fragment)
                     transaction.commit()
